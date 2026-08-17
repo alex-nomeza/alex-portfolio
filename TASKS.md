@@ -9,19 +9,19 @@ Status values:
 
 ## 0. Repository
 
-- [ ] Initialize Git repository.
-- [ ] Create private GitHub repository `alex-portfolio`.
-- [ ] Configure `origin`.
-- [ ] Create initial commit.
-- [ ] Push `main`.
-- [ ] Confirm repository visibility is private.
-- [ ] Confirm no secrets are tracked.
+- [x] Initialize Git repository.
+- [x] Create private GitHub repository `alex-portfolio`.
+- [x] Configure `origin`.
+- [x] Create initial commit.
+- [x] Push `main`.
+- [x] Confirm repository visibility is private.
+- [x] Confirm no secrets are tracked.
 
 ## 1. Astro foundation
 
 - [x] Create Astro project with TypeScript.
 - [x] Select one package manager.
-- [ ] Commit lockfile.
+- [x] Commit lockfile.
 - [x] Enable strict TypeScript.
 - [x] Add formatting.
 - [x] Add `check` script.
