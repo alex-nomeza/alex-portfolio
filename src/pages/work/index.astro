@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/paths';
+
+const projects = (await getCollection('projects', ({ data }) => data.status === 'published')).sort(
+  (a, b) =>
+    a.data.order - b.data.order ||
+    b.data.year - a.data.year ||
+    a.data.title.localeCompare(b.data.title),
+);
+---
+
+<BaseLayout
+  title="Work — Alex Mezan"
+  description="Selected multidisciplinary design and development work by Alex Mezan."
+>
+  <section class="page-shell" aria-labelledby="work-title">
+    <div class="page-intro">
+      <p class="eyebrow">Index</p>
+      <h1 id="work-title">Work</h1>
+      <p class="lede">Selected work across design, development and visual systems.</p>
+    </div>
+    {
+      projects.length === 0 ? (
+        <p class="empty-state">Published projects will appear here when their content is ready.</p>
+      ) : (
+        <ol class="project-list">
+          {projects.map((project, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <a href={withBase(`work/${project.id}/`)}>{project.data.title}</a>
+              <span>{project.data.year}</span>
+            </li>
+          ))}
+        </ol>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .project-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .project-list li {
+    display: grid;
+    grid-template-columns: 3rem 1fr auto;
+    gap: var(--space-5);
+    align-items: baseline;
+    padding: var(--space-5) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .project-list span {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-meta);
+  }
+
+  .project-list a {
+    font-size: var(--font-size-body-lg);
+  }
+</style>

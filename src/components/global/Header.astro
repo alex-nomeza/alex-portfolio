@@ -1,0 +1,93 @@
+---
+import { withBase } from '../../utils/paths';
+
+interface Props {
+  pathname: string;
+}
+
+const { pathname } = Astro.props;
+const navItems = [
+  { href: 'work/', label: 'Work' },
+  { href: 'about/', label: 'About' },
+  { href: 'lab/', label: 'Lab' },
+  { href: 'contact/', label: 'Contact' },
+];
+
+const isCurrent = (href: string) => {
+  const target = withBase(href);
+  return pathname === target || pathname.startsWith(target);
+};
+---
+
+<header class="site-header">
+  <a class="site-name" href={withBase()} aria-label="Alex Mezan, home">Alex Mezan</a>
+  <nav aria-label="Primary navigation">
+    <ul>
+      {
+        navItems.map(({ href, label }) => (
+          <li>
+            <a href={withBase(href)} aria-current={isCurrent(href) ? 'page' : undefined}>
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding: var(--space-5) var(--page-gutter);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-name {
+    color: var(--color-text);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--space-3) var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    color: var(--color-text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-meta);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: 0.3em;
+  }
+
+  @media (max-width: 36rem) {
+    .site-header {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    ul {
+      justify-content: flex-start;
+    }
+  }
+</style>

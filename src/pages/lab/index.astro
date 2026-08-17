@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const entries = (await getCollection('lab', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title),
+);
+---
+
+<BaseLayout
+  title="Lab — Alex Mezan"
+  description="Experiments, prototypes and technical explorations by Alex Mezan."
+>
+  <section class="page-shell" aria-labelledby="lab-title">
+    <div class="page-intro">
+      <p class="eyebrow">Experiments</p>
+      <h1 id="lab-title">Lab</h1>
+      <p class="lede">Technical explorations, prototypes and creative experiments.</p>
+    </div>
+    {
+      entries.length === 0 ? (
+        <p class="empty-state">Lab entries will appear here when their content is ready.</p>
+      ) : (
+        <ul class="lab-list">
+          {entries.map((entry) => (
+            <li>
+              <h2>{entry.data.title}</h2>
+              <p>{entry.data.summary}</p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .lab-list {
+    display: grid;
+    gap: var(--space-7);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .lab-list li {
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .lab-list h2 {
+    font-size: var(--font-size-body-lg);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+</style>

@@ -1,0 +1,42 @@
+.page-shell {
+  width: min(100%, var(--content-max));
+  margin-inline: auto;
+  padding: var(--section-space) var(--page-gutter);
+}
+
+.page-intro {
+  display: grid;
+  gap: var(--space-5);
+  min-height: 50vh;
+  align-content: start;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-meta);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.lede {
+  max-width: var(--text-max);
+  margin: 0;
+  font-size: var(--font-size-body-lg);
+}
+
+.empty-state {
+  margin-top: var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.prose {
+  max-width: var(--text-max);
+}
+
+.prose > :first-child {
+  margin-top: 0;
+}

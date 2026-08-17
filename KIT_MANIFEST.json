@@ -1,0 +1,30 @@
+{
+  "project": "Alex Mezan Portfolio \u2014 Codex Kit",
+  "generated": "2026-08-17",
+  "files": [
+    "ACCESSIBILITY.md",
+    "AGENTS.md",
+    "ARCHITECTURE.md",
+    "CODEX_WORKFLOW.md",
+    "CONTENT_MODEL.md",
+    "CONTEXT.md",
+    "DECISIONS.md",
+    "DEPLOYMENT.md",
+    "DESIGN_SYSTEM.md",
+    "GIT_WORKFLOW.md",
+    "PERFORMANCE.md",
+    "PRD.md",
+    "PROMPTS.md",
+    "QA_CHECKLIST.md",
+    "README.md",
+    "ROADMAP.md",
+    "SECURITY.md",
+    "SEO.md",
+    "TASKS.md",
+    "TECH_STACK.md",
+    "docs/ADR_TEMPLATE.md",
+    "src/AGENTS.md",
+    "src/content/AGENTS.md"
+  ],
+  "count": 23
+}
