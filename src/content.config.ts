@@ -21,6 +21,16 @@ const projects = defineCollection({
       technologies: z.array(z.string().min(1)).optional(),
       externalUrl: z.url().optional(),
       repositoryUrl: z.url().optional(),
+      gallery: z
+        .array(
+          z.object({
+            src: image(),
+            alt: z.string().min(1),
+            caption: z.string().min(1).optional(),
+            layout: z.enum(['full', 'wide', 'half', 'portrait']).default('wide'),
+          }),
+        )
+        .optional(),
       seo: z
         .object({
           title: z.string().min(1).optional(),

@@ -1,18 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { withBase } from '../utils/paths';
+import Hero from '../components/home/Hero.astro';
+import SelectedWork from '../components/home/SelectedWork.astro';
+import Capabilities from '../components/home/Capabilities.astro';
+import LabTeaser from '../components/home/LabTeaser.astro';
+import ContactCTA from '../components/home/ContactCTA.astro';
 ---
 
 <BaseLayout
   title="Alex Mezan — Multidisciplinary Designer & Developer"
   description="Portfolio of Alex Mezan, a multidisciplinary designer and developer based in Nosy Be, Madagascar."
 >
-  <section class="page-shell page-intro" aria-labelledby="home-title">
-    <p class="eyebrow">Alex Mezan · Nosy Be, Madagascar</p>
-    <h1 id="home-title">Multidisciplinary Designer &amp; Developer.</h1>
-    <p class="lede">
-      Designing identities, editorial experiences, digital products and visual systems.
-    </p>
-    <p><a href={withBase('work/')}>View work →</a></p>
-  </section>
+  <Hero />
+  <SelectedWork />
+  <Capabilities />
+  <LabTeaser />
+  <ContactCTA />
 </BaseLayout>

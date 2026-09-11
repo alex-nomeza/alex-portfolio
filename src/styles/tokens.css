@@ -7,14 +7,33 @@
   --color-inverse-bg: #111111;
   --color-inverse-text: #f7f7f5;
 
-  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
-  --font-size-display: clamp(4rem, 11vw, 11rem);
+  --font-sans: 'Helvetica Neue', 'Nimbus Sans L', Arial, sans-serif;
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
+  --font-meta: var(--font-sans);
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-size-display: clamp(3.25rem, 9vw, 8.5rem);
   --font-size-h1: clamp(2.625rem, 7vw, 7rem);
   --font-size-h2: clamp(2rem, 4vw, 4.5rem);
+  --font-size-h3: clamp(1.5rem, 2.6vw, 2.375rem);
+  --font-size-hero: clamp(2rem, 6.8vw, 6rem);
+  --font-size-title: clamp(2rem, 4vw, 4.5rem);
   --font-size-body-lg: clamp(1.25rem, 1.6vw, 1.75rem);
+  --font-size-body-xl: clamp(1.25rem, 2.2vw, 2.25rem);
   --font-size-body: clamp(1rem, 1.1vw, 1.125rem);
   --font-size-meta: 0.75rem;
+  --font-size-control: 0.8125rem;
+  --font-size-nav: 0.875rem;
+
+  --line-tight: 0.95;
+  --line-snug: 1.15;
+  --line-body: 1.5;
+  --tracking-tight: -0.04em;
+  --tracking-heading: -0.02em;
+  --tracking-meta: 0.06em;
+  --ratio-cover: 4 / 3;
 
   --page-gutter: clamp(1.25rem, 4vw, 4.5rem);
   --section-space: clamp(5rem, 10vw, 10rem);
@@ -31,5 +50,10 @@
   --space-8: 4rem;
 
   --duration-fast: 180ms;
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --focus-ring: 2px solid var(--color-text);
+  --control-height: 2.875rem;
+  --control-padding-inline: 1.125rem;
+  --control-border: 1px solid var(--color-text);
 }

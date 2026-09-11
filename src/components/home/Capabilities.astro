@@ -1,0 +1,81 @@
+---
+const capabilities = [
+  'Art Direction',
+  'Editorial Design',
+  'Brand & Identity',
+  'Web & Product Design',
+  'Frontend Development',
+  'Creative Technology',
+  '2D / 3D Visualization',
+  'AI-assisted Workflows',
+];
+---
+
+<section class="section container" aria-labelledby="capabilities-title">
+  <div class="capabilities">
+    <div class="capabilities-lede">
+      <p class="eyebrow">Capabilities</p>
+      <h2 id="capabilities-title">
+        Working across design and development, from first concept to shipped detail.
+      </h2>
+    </div>
+    <ul class="capabilities-list">
+      {
+        capabilities.map((item, index) => (
+          <li>
+            <span class="capabilities-index">{String(index + 1).padStart(2, '0')}</span>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .capabilities {
+    display: grid;
+    gap: var(--space-8) var(--page-gutter);
+  }
+
+  @media (min-width: 56rem) {
+    .capabilities {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+
+  .capabilities-lede h2 {
+    max-width: 18ch;
+    margin: var(--space-5) 0 0;
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-heading);
+    line-height: var(--line-snug);
+    text-wrap: balance;
+  }
+
+  .capabilities-list {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .capabilities-list li {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-5);
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-body-lg);
+  }
+
+  .capabilities-index {
+    color: var(--color-text-muted);
+    font-family: var(--font-meta);
+    font-size: var(--font-size-meta);
+  }
+</style>

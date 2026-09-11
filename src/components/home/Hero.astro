@@ -1,0 +1,89 @@
+---
+import { withBase } from '../../utils/paths';
+---
+
+<section class="hero" aria-labelledby="home-title">
+  <div class="hero-content container">
+    <p class="hero-kicker">
+      <span>Alex Mezan</span>
+      <span aria-hidden="true">/</span>
+      <span>Nosy Be, Madagascar</span>
+    </p>
+    <h1 id="home-title" class="hero-title">Designer &amp; Developer</h1>
+    <p class="hero-lede">
+      Designing identities, editorial experiences, digital products and visual systems — where
+      design and code meet.
+    </p>
+    <p class="hero-actions">
+      <a class="button button--solid" data-dir="down" href="#selected-work">Selected work</a>
+      <a class="button button--outline" href={withBase('contact/')}>Get in touch</a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: calc(100svh - 4.5625rem);
+  }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+    align-content: center;
+    justify-items: center;
+    min-height: inherit;
+    padding-block: clamp(2rem, 5vh, 4rem);
+    text-align: center;
+  }
+
+  .hero-kicker {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin: 0;
+    color: var(--color-text-muted);
+    font-family: var(--font-meta);
+    font-size: var(--font-size-meta);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    max-width: none;
+    margin: 0;
+    font-size: var(--font-size-hero);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--line-tight);
+    white-space: nowrap;
+  }
+
+  .hero-lede {
+    max-width: 42ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-body-lg);
+    text-wrap: pretty;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4) var(--space-6);
+    margin: var(--space-2) 0 0;
+  }
+
+  @media (max-width: 36rem) {
+    .hero {
+      min-height: calc(100svh - 6.75rem);
+    }
+
+    .hero-content {
+      gap: var(--space-5);
+      padding-block: clamp(1.5rem, 4vh, 2.5rem);
+    }
+  }
+</style>

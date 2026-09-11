@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../utils/paths';
 
 const entries = (await getCollection('lab', ({ data }) => !data.draft)).sort(
   (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title),
@@ -15,20 +16,51 @@ const entries = (await getCollection('lab', ({ data }) => !data.draft)).sort(
     <div class="page-intro">
       <p class="eyebrow">Experiments</p>
       <h1 id="lab-title">Lab</h1>
-      <p class="lede">Technical explorations, prototypes and creative experiments.</p>
+      <p class="lede">
+        A working space for language tools, prototypes, visual research and creative technology.
+      </p>
     </div>
     {
       entries.length === 0 ? (
-        <p class="empty-state">Lab entries will appear here when their content is ready.</p>
+        <p class="empty-state">
+          Experiments remain off the public index until their scope, status and supporting links can
+          be documented accurately.
+        </p>
       ) : (
-        <ul class="lab-list">
-          {entries.map((entry) => (
-            <li>
-              <h2>{entry.data.title}</h2>
-              <p>{entry.data.summary}</p>
+        <ol class="lab-list">
+          {entries.map((entry, index) => (
+            <li class="lab-entry">
+              <article aria-labelledby={`lab-entry-${index}`}>
+                <header class="lab-entry-header">
+                  <div class="lab-entry-index" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                  <div class="lab-entry-title">
+                    <p class="lab-entry-meta">
+                      <span>{entry.data.year}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{entry.data.status}</span>
+                    </p>
+                    <h2 id={`lab-entry-${index}`}>
+                      <a href={withBase(`lab/${entry.id}/`)}>{entry.data.title}</a>
+                    </h2>
+                    <p class="lab-entry-summary">{entry.data.summary}</p>
+                  </div>
+                  <ul class="lab-tags" aria-label={`${entry.data.title} tags`}>
+                    {entry.data.tags.map((tag) => (
+                      <li>{tag}</li>
+                    ))}
+                  </ul>
+                </header>
+                <p class="lab-entry-action">
+                  <a class="link-arrow" data-dir="right" href={withBase(`lab/${entry.id}/`)}>
+                    Read experiment
+                  </a>
+                </p>
+              </article>
             </li>
           ))}
-        </ul>
+        </ol>
       )
     }
   </section>
@@ -37,20 +69,103 @@ const entries = (await getCollection('lab', ({ data }) => !data.draft)).sort(
 <style>
   .lab-list {
     display: grid;
-    gap: var(--space-7);
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .lab-entry {
+    padding-block: var(--space-8);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .lab-entry article {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  .lab-entry-header {
+    display: grid;
+    gap: var(--space-5) var(--page-gutter);
+  }
+
+  .lab-entry-index,
+  .lab-entry-meta,
+  .lab-tags {
+    color: var(--color-text-muted);
+    font-family: var(--font-meta);
+    font-size: var(--font-size-meta);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  .lab-entry-index {
+    color: var(--color-border);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.06em;
+    line-height: 0.8;
+  }
+
+  .lab-entry-index,
+  .lab-entry-meta,
+  .lab-entry-summary {
+    margin: 0;
+  }
+
+  .lab-entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .lab-entry h2 {
+    font-size: var(--font-size-title);
+    line-height: var(--line-snug);
+    letter-spacing: var(--tracking-heading);
+  }
+
+  .lab-entry h2 a {
+    text-decoration: none;
+  }
+
+  .lab-entry h2 a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .lab-entry-summary {
+    max-width: 46ch;
+    margin-top: var(--space-4);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-body-lg);
+    text-wrap: pretty;
+  }
+
+  .lab-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: start;
+    gap: var(--space-2) var(--space-4);
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
-  .lab-list li {
-    padding-top: var(--space-5);
-    border-top: 1px solid var(--color-border);
+  .lab-entry-action {
+    margin: 0;
   }
 
-  .lab-list h2 {
-    font-size: var(--font-size-body-lg);
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+  @media (min-width: 56rem) {
+    .lab-entry-header {
+      grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1.35fr) minmax(12rem, 0.6fr);
+    }
+
+    .lab-entry-action {
+      padding-left: calc(8rem + var(--page-gutter));
+    }
   }
 </style>

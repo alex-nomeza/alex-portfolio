@@ -1,36 +1,50 @@
 ---
-import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPublishedProjects } from '../../utils/projects';
 import { withBase } from '../../utils/paths';
 
-const projects = (await getCollection('projects', ({ data }) => data.status === 'published')).sort(
-  (a, b) =>
-    a.data.order - b.data.order ||
-    b.data.year - a.data.year ||
-    a.data.title.localeCompare(b.data.title),
-);
+const projects = await getPublishedProjects();
 ---
 
 <BaseLayout
   title="Work — Alex Mezan"
   description="Selected multidisciplinary design and development work by Alex Mezan."
 >
-  <section class="page-shell" aria-labelledby="work-title">
+  <section class="container work" aria-labelledby="work-title">
     <div class="page-intro">
       <p class="eyebrow">Index</p>
       <h1 id="work-title">Work</h1>
       <p class="lede">Selected work across design, development and visual systems.</p>
     </div>
+
     {
       projects.length === 0 ? (
-        <p class="empty-state">Published projects will appear here when their content is ready.</p>
+        <p class="empty-state">
+          Case studies remain off the public index until their role, dates, narrative and imagery
+          can be documented accurately.
+        </p>
       ) : (
-        <ol class="project-list">
+        <ol class="work-index">
           {projects.map((project, index) => (
             <li>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              <a href={withBase(`work/${project.id}/`)}>{project.data.title}</a>
-              <span>{project.data.year}</span>
+              <a class="work-row" href={withBase(`work/${project.id}/`)}>
+                <span class="work-plate">
+                  <Image
+                    src={project.data.cover}
+                    alt=""
+                    widths={[160, 320]}
+                    sizes="8rem"
+                    loading={index < 4 ? 'eager' : 'lazy'}
+                  />
+                </span>
+                <span class="work-num">{String(index + 1).padStart(2, '0')}</span>
+                <span class="work-body">
+                  <span class="work-name">{project.data.title}</span>
+                  <span class="work-disc">{project.data.disciplines.join(', ')}</span>
+                </span>
+                <span class="work-year">{project.data.year}</span>
+              </a>
             </li>
           ))}
         </ol>
@@ -40,29 +54,103 @@ const projects = (await getCollection('projects', ({ data }) => data.status === 
 </BaseLayout>
 
 <style>
-  .project-list {
-    margin: 0;
+  .work {
+    padding-block: var(--section-space);
+  }
+
+  .work-index {
+    margin: var(--space-8) 0 0;
     padding: 0;
     list-style: none;
     border-top: 1px solid var(--color-border);
   }
 
-  .project-list li {
+  .work-row {
     display: grid;
-    grid-template-columns: 3rem 1fr auto;
+    grid-template-columns: minmax(12rem, 0.55fr) 2.5rem minmax(0, 1fr) auto;
+    align-items: center;
     gap: var(--space-5);
-    align-items: baseline;
-    padding: var(--space-5) 0;
+    padding: var(--space-6) 0;
     border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
   }
 
-  .project-list span {
+  .work-plate {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: var(--ratio-cover);
+    background: var(--color-border);
+  }
+
+  .work-plate img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  .work-row:hover .work-plate img {
+    transform: scale(1.04);
+  }
+
+  .work-num,
+  .work-disc,
+  .work-year {
     color: var(--color-text-muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-meta);
     font-size: var(--font-size-meta);
   }
 
-  .project-list a {
-    font-size: var(--font-size-body-lg);
+  .work-body {
+    display: grid;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .work-name {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-heading);
+    line-height: var(--line-snug);
+  }
+
+  .work-row:hover .work-name {
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+
+  @media (max-width: 40rem) {
+    .work-row {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        'plate plate'
+        'body meta';
+      gap: var(--space-4);
+      align-items: start;
+    }
+
+    .work-plate {
+      grid-area: plate;
+      width: 100%;
+    }
+
+    .work-num {
+      display: none;
+    }
+
+    .work-body {
+      grid-area: body;
+    }
+
+    .work-year {
+      grid-area: meta;
+      padding-top: 0.45rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work-row:hover .work-plate img {
+      transform: none;
+    }
   }
 </style>

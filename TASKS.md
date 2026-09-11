@@ -38,6 +38,7 @@ Status values:
 - [x] Add global body styles.
 - [x] Add focus styles.
 - [x] Add reduced-motion rules.
+- [x] Unify typography, CTA and button styles.
 - [x] Build Header.
 - [x] Build Footer.
 - [x] Build BaseLayout.
@@ -49,45 +50,54 @@ Status values:
 - [x] Add draft example project.
 - [x] Validate draft exclusion.
 - [ ] Add image conventions.
+- [x] Add temporary generated project covers.
 
 ## 4. Homepage
 
-- [ ] Hero.
-- [ ] Selected Work section.
-- [ ] Capabilities.
-- [ ] Lab teaser.
-- [ ] Contact CTA.
-- [ ] Desktop QA.
-- [ ] Tablet QA.
-- [ ] Mobile QA.
+- [x] Hero.
+- [x] Selected Work section.
+- [x] Capabilities.
+- [x] Lab teaser.
+- [x] Contact CTA.
+- [x] Desktop QA.
+- [x] Tablet QA.
+- [x] Mobile QA.
 
 ## 5. Work
 
 - [x] Work index shell.
-- [ ] Project card/row.
+- [x] Project card/row.
 - [x] Project dynamic route foundation.
-- [ ] Project metadata.
-- [ ] Case-study layout.
-- [ ] Media blocks.
-- [ ] Next-project navigation.
+- [x] Project metadata.
+- [x] Case-study layout.
+- [x] Media blocks.
+- [x] Next-project navigation.
 
 ## 6. Other pages
 
 - [x] About route shell.
+- [x] About page editorial content.
 - [x] Lab route shell.
+- [x] Lab detail routes.
 - [x] Contact route shell.
+- [x] Contact page editorial content and verified GitHub link.
 - [x] 404.
 
 ## 7. Initial portfolio content
 
-- [ ] Le Journal.
-- [ ] Le Zahir.
-- [ ] Web & Digital selection.
-- [ ] Nosyra.
-- [ ] 3D / Architecture.
-- [ ] Malagasy NLP / Lab.
+- [x] Le Journal. (provisional concept case study)
+- [x] Le Zahir. (provisional concept case study)
+- [x] Web & Digital selection. (provisional concept case study)
+- [x] Nosyra. (provisional concept case study)
+- [x] 3D / Architecture. (provisional concept case study)
+- [x] Malagasy NLP / Lab. (provisional concept entry)
+- [x] Excel Analytics Tool / Lab. (provisional concept entry)
+- [x] AI Visual Experiments / Lab. (provisional concept entry)
+- [x] Portfolio System / Lab.
 
-Keep incomplete projects as drafts.
+The five project entries and the Malagasy NLP Lab entry are temporarily published
+as 2026 concept studies. Replace provisional narratives and generated covers with
+confirmed project evidence when available.
 
 ## 8. SEO
 

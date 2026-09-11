@@ -8,9 +8,35 @@ import { withBase } from '../utils/paths';
   description="The requested page could not be found."
   noindex
 >
-  <section class="page-shell page-intro" aria-labelledby="not-found-title">
-    <p class="eyebrow">Error 404</p>
+  <section class="page-shell page-intro not-found" aria-labelledby="not-found-title">
+    <p class="error-code" aria-hidden="true">404</p>
+    <p class="eyebrow">Error</p>
     <h1 id="not-found-title">Page not found.</h1>
     <p><a href={withBase()}>Return home →</a></p>
   </section>
 </BaseLayout>
+
+<style>
+  .not-found {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .error-code {
+    position: absolute;
+    right: var(--page-gutter);
+    bottom: 0;
+    margin: 0;
+    color: var(--color-border);
+    font-size: clamp(8rem, 28vw, 26rem);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: -0.08em;
+    line-height: 0.72;
+    pointer-events: none;
+  }
+
+  .not-found > :not(.error-code) {
+    position: relative;
+    z-index: 1;
+  }
+</style>

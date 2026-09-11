@@ -1,0 +1,54 @@
+---
+import { withBase } from '../../utils/paths';
+---
+
+<section class="contact-cta" aria-labelledby="contact-cta-title">
+  <div class="container contact-cta-inner">
+    <p class="eyebrow contact-cta-eyebrow">Contact</p>
+    <h2 id="contact-cta-title">Have a project in mind? Let’s talk.</h2>
+    <p class="contact-cta-actions">
+      <a class="button button--inverse contact-cta-link" href={withBase('contact/')}>
+        Start a conversation
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .contact-cta {
+    background: var(--color-inverse-bg);
+    color: var(--color-inverse-text);
+  }
+
+  .contact-cta-inner {
+    display: grid;
+    gap: var(--space-6);
+    padding-block: var(--section-space);
+  }
+
+  .contact-cta-eyebrow {
+    color: var(--color-border);
+  }
+
+  .contact-cta h2 {
+    max-width: 18ch;
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--line-tight);
+    text-wrap: balance;
+  }
+
+  .contact-cta-actions {
+    margin: var(--space-2) 0 0;
+  }
+
+  .contact-cta-link {
+    color: var(--color-inverse-text);
+  }
+
+  /* Focus ring must stay visible against the dark section. */
+  .contact-cta :focus-visible {
+    outline-color: var(--color-inverse-text);
+  }
+</style>

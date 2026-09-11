@@ -1,14 +1,134 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const githubUrl = 'https://github.com/alex-nomeza';
+const email = 'alexx.rafanomezantsoa@gmail.com';
 ---
 
 <BaseLayout
   title="Contact — Alex Mezan"
-  description="Contact information for Alex Mezan, multidisciplinary designer and developer."
+  description="Contact Alex Mezan for multidisciplinary design, editorial, web, product and creative technology collaborations."
 >
-  <section class="page-shell page-intro" aria-labelledby="contact-title">
-    <p class="eyebrow">Contact</p>
-    <h1 id="contact-title">Let’s work together.</h1>
-    <p class="lede">Verified professional contact links will be added before publication.</p>
+  <section class="contact container" aria-labelledby="contact-title">
+    <div class="contact-main">
+      <p class="eyebrow">Contact · Nosy Be, Madagascar</p>
+      <h1 id="contact-title">Let’s make something clear, useful and memorable.</h1>
+      <p class="contact-lede">
+        Available for selected collaborations across identity, editorial, web, product and creative
+        technology.
+      </p>
+    </div>
+
+    <div class="contact-details">
+      <div>
+        <p class="contact-label">Enquiries</p>
+        <a class="contact-link" href={`mailto:${email}`}>
+          {email}
+          <span aria-hidden="true">↗</span>
+        </a>
+        <p class="contact-note">Include the project context, scope and preferred timing.</p>
+      </div>
+      <div>
+        <p class="contact-label">Development</p>
+        <a class="contact-link" href={githubUrl} rel="noopener noreferrer" target="_blank">
+          GitHub · alex-nomeza <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <div>
+        <p class="contact-label">Based in</p>
+        <p>Nosy Be, Madagascar<br />EAT · UTC+3</p>
+      </div>
+    </div>
   </section>
 </BaseLayout>
+
+<style>
+  .contact {
+    display: grid;
+    gap: var(--section-space);
+    padding-block: var(--section-space);
+  }
+
+  .contact-main {
+    display: grid;
+    gap: var(--space-6);
+    min-height: min(62vh, 42rem);
+    align-content: center;
+  }
+
+  .contact-main h1 {
+    max-width: 17ch;
+  }
+
+  .contact-lede {
+    max-width: 42ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-body-xl);
+    text-wrap: pretty;
+  }
+
+  .contact-details {
+    display: grid;
+    gap: var(--space-7) var(--page-gutter);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-details > div {
+    display: grid;
+    gap: var(--space-3);
+    align-content: start;
+  }
+
+  .contact-details p {
+    max-width: 38ch;
+    margin: 0;
+  }
+
+  .contact-note {
+    color: var(--color-text-muted);
+  }
+
+  .contact-label {
+    color: var(--color-text-muted);
+    font-family: var(--font-meta);
+    font-size: var(--font-size-meta);
+    letter-spacing: var(--tracking-meta);
+    text-transform: uppercase;
+  }
+
+  .contact-link {
+    width: fit-content;
+    font-size: var(--font-size-body-lg);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+  }
+
+  .contact-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 48rem) {
+    .contact-main {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--page-gutter);
+    }
+
+    .contact-main .eyebrow {
+      grid-column: 1 / 5;
+    }
+
+    .contact-main h1 {
+      grid-column: 1 / 10;
+    }
+
+    .contact-lede {
+      grid-column: 8 / 13;
+    }
+
+    .contact-details {
+      grid-template-columns: 1.6fr 0.8fr 0.6fr;
+    }
+  }
+</style>

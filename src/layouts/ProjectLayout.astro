@@ -1,69 +1,214 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
+import ProjectGallery from '../components/project/ProjectGallery.astro';
+import NextProject from '../components/project/NextProject.astro';
+import type { Project } from '../utils/projects';
 
 interface Props {
-  title: string;
-  description: string;
-  year: number;
-  disciplines: string[];
-  role: string[];
+  project: Project;
+  next?: Project;
 }
 
-const { title, description, year, disciplines, role } = Astro.props;
+const { project, next } = Astro.props;
+const { data } = project;
+
+const title = data.seo?.title ?? data.title;
+const description = data.seo?.description ?? data.summary;
+
+interface MetaItem {
+  label: string;
+  value: string;
+}
+
+const meta: MetaItem[] = [
+  { label: 'Year', value: String(data.year) },
+  { label: 'Disciplines', value: data.disciplines.join(', ') },
+  { label: 'Role', value: data.role.join(', ') },
+];
+if (data.client) meta.push({ label: 'Client', value: data.client });
+if (data.technologies?.length) {
+  meta.push({ label: 'Technologies', value: data.technologies.join(', ') });
+}
+
+const links = [
+  data.externalUrl ? { label: 'Visit', href: data.externalUrl } : null,
+  data.repositoryUrl ? { label: 'Repository', href: data.repositoryUrl } : null,
+].filter((link): link is { label: string; href: string } => link !== null);
 ---
 
 <BaseLayout title={`${title} — Alex Mezan`} description={description}>
-  <article class="page-shell project-shell">
+  <article class="project container">
     <header class="project-header">
-      <p class="eyebrow">Project · {year}</p>
-      <h1>{title}</h1>
-      <dl>
-        <div>
-          <dt>Disciplines</dt>
-          <dd>{disciplines.join(', ')}</dd>
-        </div>
-        <div>
-          <dt>Role</dt>
-          <dd>{role.join(', ')}</dd>
-        </div>
+      <p class="eyebrow">Project · {data.year}</p>
+      <h1 class="project-title">{data.title}</h1>
+      {data.subtitle && <p class="project-subtitle">{data.subtitle}</p>}
+
+      <dl class="project-meta">
+        {
+          meta.map((item) => (
+            <div>
+              <dt>{item.label}</dt>
+              <dd>{item.value}</dd>
+            </div>
+          ))
+        }
       </dl>
+
+      {
+        links.length > 0 && (
+          <p class="project-links">
+            {links.map((link) => (
+              <a
+                class="link-arrow"
+                data-dir="right"
+                href={link.href}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {link.label}
+              </a>
+            ))}
+          </p>
+        )
+      }
     </header>
-    <div class="prose">
+
+    <Image
+      class="project-cover"
+      src={data.cover}
+      alt={data.coverAlt}
+      widths={[768, 1200, 1600, 2000]}
+      sizes="(min-width: 90rem) 90rem, 100vw"
+      loading="eager"
+    />
+
+    <div class="prose project-body">
       <slot />
     </div>
+
+    {data.gallery && <ProjectGallery items={data.gallery} />}
+
+    {next && <NextProject project={next} />}
   </article>
 </BaseLayout>
 
 <style>
+  .project {
+    padding-block: var(--section-space);
+  }
+
   .project-header {
     display: grid;
     gap: var(--space-6);
-    padding-bottom: var(--section-space);
+    min-height: min(66vh, 46rem);
+    align-content: center;
   }
 
-  dl {
+  .project-title {
+    max-width: 18ch;
+    margin: 0;
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--line-tight);
+    text-wrap: balance;
+  }
+
+  .project-subtitle {
+    max-width: 42ch;
+    margin: 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-body-lg);
+    text-wrap: pretty;
+  }
+
+  .project-meta {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
     gap: var(--space-5);
     margin: 0;
-    padding-top: var(--space-5);
+    padding-top: var(--space-6);
     border-top: 1px solid var(--color-border);
   }
 
-  dt {
+  .project-meta dt {
     color: var(--color-text-muted);
-    font-family: var(--font-mono);
+    font-family: var(--font-meta);
     font-size: var(--font-size-meta);
+    letter-spacing: var(--tracking-meta);
     text-transform: uppercase;
   }
 
-  dd {
+  .project-meta dd {
     margin: var(--space-2) 0 0;
   }
 
-  @media (max-width: 36rem) {
-    dl {
-      grid-template-columns: 1fr;
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4) var(--space-6);
+    margin: 0;
+  }
+
+  .project-cover {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: var(--space-8);
+  }
+
+  .project-body {
+    display: grid;
+    gap: var(--space-5) var(--page-gutter);
+    max-width: none;
+    margin-top: var(--section-space);
+  }
+
+  .project-body :global(h2) {
+    margin: 0;
+    font-size: var(--font-size-h3);
+    line-height: var(--line-snug);
+  }
+
+  .project-body :global(p),
+  .project-body :global(ul) {
+    max-width: 62ch;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  .project-body:empty {
+    margin-top: 0;
+  }
+
+  @media (min-width: 56rem) {
+    .project-header {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--page-gutter);
+    }
+
+    .project-header > .eyebrow,
+    .project-title {
+      grid-column: 1 / 9;
+    }
+
+    .project-subtitle {
+      grid-column: 8 / 13;
+    }
+
+    .project-meta,
+    .project-links {
+      grid-column: 1 / -1;
+    }
+
+    .project-body :global(h2) {
+      grid-column: 1 / 5;
+    }
+
+    .project-body :global(p),
+    .project-body :global(ul) {
+      grid-column: 5 / 11;
     }
   }
 </style>

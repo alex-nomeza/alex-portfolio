@@ -7,23 +7,47 @@
 .page-intro {
   display: grid;
   gap: var(--space-5);
-  min-height: 50vh;
-  align-content: start;
+  min-height: min(58vh, 40rem);
+  align-content: center;
+  padding-block: var(--space-8);
 }
 
 .eyebrow {
   margin: 0;
   color: var(--color-text-muted);
-  font-family: var(--font-mono);
+  font-family: var(--font-meta);
   font-size: var(--font-size-meta);
-  letter-spacing: 0.06em;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-meta);
+  line-height: var(--line-body);
   text-transform: uppercase;
 }
 
 .lede {
-  max-width: var(--text-max);
+  max-width: 38ch;
   margin: 0;
   font-size: var(--font-size-body-lg);
+}
+
+@media (min-width: 56rem) {
+  .page-intro {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: var(--page-gutter);
+  }
+
+  .page-intro .eyebrow {
+    grid-column: 1 / 4;
+    align-self: start;
+  }
+
+  .page-intro h1 {
+    grid-column: 1 / 9;
+  }
+
+  .page-intro .lede {
+    grid-column: 8 / 13;
+    align-self: end;
+  }
 }
 
 .empty-state {
@@ -39,4 +63,148 @@
 
 .prose > :first-child {
   margin-top: 0;
+}
+
+/* Horizontal page container without vertical section padding. */
+.container {
+  width: min(100%, var(--content-max));
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+/* Section rhythm for stacked homepage sections. Top spacing only so
+   consecutive sections keep a single, even gap. */
+.section {
+  padding-block-start: var(--section-space);
+}
+
+/* Section header: eyebrow + heading + optional link, on a shared baseline. */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-head h2 {
+  font-size: var(--font-size-h2);
+}
+
+/* Typographic CTA with a directional arrow. */
+.link-arrow,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  color: var(--color-text);
+  font-family: var(--font-meta);
+  font-size: var(--font-size-meta);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-meta);
+  line-height: 1;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.link-arrow {
+  align-items: baseline;
+}
+
+.link-arrow::after {
+  content: '\2197'; /* ↗ */
+  transition:
+    transform var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+}
+
+.link-arrow[data-dir='down']::after {
+  content: '\2193'; /* ↓ */
+}
+
+.link-arrow[data-dir='right']::after {
+  content: '\2192'; /* → */
+}
+
+.link-arrow:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.link-arrow:hover::after {
+  transform: translate(0.15em, -0.15em);
+}
+
+.link-arrow[data-dir='down']:hover::after {
+  transform: translateY(0.15em);
+}
+
+.link-arrow[data-dir='right']:hover::after {
+  transform: translateX(0.2em);
+}
+
+/* Rectangular CTA variants for moments that need more emphasis than a text link. */
+.button {
+  min-height: var(--control-height);
+  padding: 0 var(--control-padding-inline);
+  border: var(--control-border);
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--font-size-control);
+}
+
+.button::after {
+  content: '\2192';
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.button[data-dir='down']::after {
+  content: '\2193';
+}
+
+.button:hover::after {
+  transform: translateX(0.2em);
+}
+
+.button[data-dir='down']:hover::after {
+  transform: translateY(0.15em);
+}
+
+.button--solid {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.button--solid:hover {
+  background: var(--color-text-muted);
+  border-color: var(--color-text-muted);
+}
+
+.button--outline:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.button--inverse {
+  border-color: var(--color-inverse-text);
+  background: var(--color-inverse-text);
+  color: var(--color-inverse-bg);
+}
+
+.button--inverse:hover {
+  background: transparent;
+  color: var(--color-inverse-text);
+}
+
+.button:active {
+  transform: translateY(1px);
 }
