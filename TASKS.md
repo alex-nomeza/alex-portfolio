@@ -128,7 +128,8 @@ confirmed project evidence when available.
 - [x] Use public source repository for GitHub Pages.
 - [x] Configure automatic validation, build and deployment on push to main.
 - [x] Configure Astro `site`/`base`.
-- [-] Enable Actions-based Pages on alex-portfolio.
+- [x] Enable Actions-based Pages on alex-portfolio.
 - [x] Verify production URL.
 - [x] Verify HTTPS.
 - [ ] Add custom domain later.
+- [!] Delete temporary alex-nomeza.github.io repository: CLI authentication lacks delete_repo scope.
