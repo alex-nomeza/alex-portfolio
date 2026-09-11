@@ -170,3 +170,15 @@ source repository private and publish only Astro build output to the public
 GitHub Pages and `.nojekyll`. This avoids dependence on private-repository Pages
 eligibility and preserves source/document privacy. The first release is built
 locally; automatic source-to-delivery synchronization is not yet configured.
+
+## ADR-007 — Public source with automatic GitHub Pages deployment
+
+**Date:** 2026-09-11
+**Status:** accepted; supersedes ADR-006
+
+The user explicitly requested keeping `alex-portfolio`, making it public, and
+removing the recent delivery repository. GitHub Actions validates, builds and
+publishes on every push to `main`. The URL becomes
+`https://alex-nomeza.github.io/alex-portfolio/`. Astro uses a matching base path
+and trailing slashes. Official actions use the built-in token and OIDC without
+cross-repository credentials. Source visibility is public by explicit request.

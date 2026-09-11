@@ -14,7 +14,7 @@ Status values:
 - [x] Configure `origin`.
 - [x] Create initial commit.
 - [x] Push `main`.
-- [x] Confirm repository visibility is private.
+- [x] Change source visibility to public by user request.
 - [x] Confirm no secrets are tracked.
 
 ## 1. Astro foundation
@@ -125,10 +125,10 @@ confirmed project evidence when available.
 
 ## 10. Deployment
 
-- [x] Avoid private Pages plan dependency with a separate public build-only repository.
-- [ ] Automate source-to-delivery synchronization (initial release uses a local build).
+- [x] Use public source repository for GitHub Pages.
+- [x] Configure automatic validation, build and deployment on push to main.
 - [x] Configure Astro `site`/`base`.
-- [x] Enable Pages on the public delivery repository.
+- [-] Enable Actions-based Pages on alex-portfolio.
 - [x] Verify production URL.
 - [x] Verify HTTPS.
 - [ ] Add custom domain later.
