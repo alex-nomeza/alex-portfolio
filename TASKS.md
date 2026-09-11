@@ -132,4 +132,4 @@ confirmed project evidence when available.
 - [x] Verify production URL.
 - [x] Verify HTTPS.
 - [ ] Add custom domain later.
-- [!] Delete temporary alex-nomeza.github.io repository: CLI authentication lacks delete_repo scope.
+- [x] Delete temporary alex-nomeza.github.io repository; deletion confirmed through GitHub API.
