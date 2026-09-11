@@ -158,3 +158,15 @@ Astro 7.1.6:
 TypeScript 7.0.2:
 
 - latest compiler, but outside the supported peer range of the official Astro checker.
+
+## ADR-006 — Separate public static delivery repository
+
+**Date:** 2026-09-11
+**Status:** accepted
+
+The user requested publication at `https://alex-nomeza.github.io/`. Keep the
+source repository private and publish only Astro build output to the public
+`alex-nomeza/alex-nomeza.github.io` repository. Serve `main` at its root using
+GitHub Pages and `.nojekyll`. This avoids dependence on private-repository Pages
+eligibility and preserves source/document privacy. The first release is built
+locally; automatic source-to-delivery synchronization is not yet configured.

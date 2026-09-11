@@ -103,7 +103,7 @@ confirmed project evidence when available.
 
 - [ ] Global metadata.
 - [ ] Per-page titles/descriptions.
-- [ ] Canonical configuration.
+- [x] Canonical configuration.
 - [ ] Sitemap.
 - [ ] Robots.
 - [ ] Open Graph.
@@ -125,10 +125,10 @@ confirmed project evidence when available.
 
 ## 10. Deployment
 
-- [ ] Determine GitHub plan / private Pages availability.
-- [ ] Configure GitHub Actions.
-- [ ] Configure Astro `site`/`base`.
-- [ ] Enable Pages if supported.
-- [ ] Verify production URL.
-- [ ] Verify HTTPS.
+- [x] Avoid private Pages plan dependency with a separate public build-only repository.
+- [ ] Automate source-to-delivery synchronization (initial release uses a local build).
+- [x] Configure Astro `site`/`base`.
+- [x] Enable Pages on the public delivery repository.
+- [x] Verify production URL.
+- [x] Verify HTTPS.
 - [ ] Add custom domain later.

@@ -99,3 +99,27 @@ Because deployment is source-controlled:
 - let the deployment workflow publish the last known good source.
 
 Do not manually patch generated production files.
+
+## Current publication (2026-09-11)
+
+Production URL: https://alex-nomeza.github.io/
+
+- Source remains private in `alex-nomeza/alex-portfolio`.
+- Public delivery repository: `alex-nomeza/alex-nomeza.github.io`.
+- Only the contents of the validated `dist/` directory and `.nojekyll` are published.
+- GitHub Pages serves the root of the delivery repository's `main` branch.
+- Astro `site` uses the production origin; `base` remains `/`.
+- No source history, project documents, credentials, or source maps are copied.
+
+This initial release uses a local build and a push of the generated files. A push
+of the source repository does not automatically republish the website.
+
+For updates, run `npm run format:check`, `npm run check`, and `npm run build`.
+Clone the delivery repository into an ignored temporary directory, replace its
+tracked website files with the new `dist/` contents, keep `.nojekyll`, review the
+diff, then commit and push. Do not copy the source repository or its `.git` folder.
+Use the GitHub noreply email for commits in the public delivery repository.
+
+To roll back, revert the relevant delivery commit and push. GitHub Pages then
+publishes the reverted static files. Cross-repository automatic delivery remains
+a future task and requires dedicated authentication with limited permissions.
