@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Table, démonstration de site de restaurant : carte interactive et simulation de réservation."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Table — Une cuisine, une saison</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <div class="demo">
+      Démo de portfolio · Restaurant et données fictifs · Aucune réservation réelle
+    </div>
+    <header class="wrap nav">
+      <a class="brand" href="./index.html" aria-label="Table, accueil">table<span>.</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#carte">La carte</a><a href="#esprit">L’esprit</a
+        ><a href="#reservation">Réserver une table ↗</a>
+      </nav>
+    </header>
+    <main id="contenu">
+      <section class="wrap hero">
+        <div>
+          <p class="eyebrow">À table, tout simplement.</p>
+          <h1>Une cuisine.<br />Une saison.<br /><em>Un bon moment.</em></h1>
+          <p class="lead">
+            Des légumes au centre de l’assiette, des recettes courtes et le plaisir de prendre son
+            temps.
+          </p>
+          <a class="button" href="#carte">Découvrir la carte ↓</a>
+        </div>
+        <div class="menu-board">
+          <p class="eyebrow">L’inspiration du moment</p>
+          <p class="board-title">Le goût<br />des choses<br /><em>simples.</em></p>
+          <div class="board-bottom">
+            <span>Tomate · Basilic · Olive</span><span>La carte de démonstration</span>
+          </div>
+        </div>
+      </section>
+      <section id="carte" class="wrap section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / À la carte</p>
+            <h2>Selon votre envie.</h2>
+          </div>
+          <p>
+            Une courte sélection, de l’entrée au dessert.<br />Prix et plats donnés à titre
+            d’exemple.
+          </p>
+        </div>
+        <div class="filters" aria-label="Filtrer la carte" hidden>
+          <button type="button" data-filter="all" aria-pressed="true">Tout</button
+          ><button type="button" data-filter="entree" aria-pressed="false">Entrées</button
+          ><button type="button" data-filter="plat" aria-pressed="false">Plats</button
+          ><button type="button" data-filter="dessert" aria-pressed="false">Desserts</button>
+        </div>
+        <p id="menu-status" class="small" role="status"></p>
+        <div class="menu-list">
+          <article data-category="entree">
+            <div>
+              <span class="eyebrow">Entrée</span>
+              <h3>Tomates, basilic & huile d’olive</h3>
+              <p>Tomates colorées, basilic frais, pain grillé.</p>
+            </div>
+            <span class="price">9 €</span>
+          </article>
+          <article data-category="entree">
+            <div>
+              <span class="eyebrow">Entrée</span>
+              <h3>Carottes rôties, yaourt citronné</h3>
+              <p>Carottes, yaourt, graines de courge.</p>
+            </div>
+            <span class="price">8 €</span>
+          </article>
+          <article data-category="plat">
+            <div>
+              <span class="eyebrow">Plat</span>
+              <h3>Risotto aux champignons</h3>
+              <p>Riz crémeux, champignons poêlés, parmesan.</p>
+            </div>
+            <span class="price">19 €</span>
+          </article>
+          <article data-category="plat">
+            <div>
+              <span class="eyebrow">Plat</span>
+              <h3>Poisson, fenouil & citron</h3>
+              <p>Filet rôti, fenouil braisé, sauce citronnée.</p>
+            </div>
+            <span class="price">23 €</span>
+          </article>
+          <article data-category="dessert">
+            <div>
+              <span class="eyebrow">Dessert</span>
+              <h3>Poire pochée, chocolat noir</h3>
+              <p>Poire à la vanille, chocolat, amandes.</p>
+            </div>
+            <span class="price">8 €</span>
+          </article>
+          <article data-category="dessert">
+            <div>
+              <span class="eyebrow">Dessert</span>
+              <h3>Tarte fine aux pommes</h3>
+              <p>Pommes fondantes et pâte croustillante.</p>
+            </div>
+            <span class="price">7 €</span>
+          </article>
+        </div>
+      </section>
+      <section id="esprit" class="story">
+        <div class="wrap story-grid">
+          <p class="eyebrow">02 / L’esprit Table</p>
+          <div>
+            <h2>Moins de détour.<br />Plus de goût.</h2>
+            <p>
+              Ce concept de restaurant imagine un lieu où la carte se lit en quelques instants et où
+              l’on reste volontiers un peu plus longtemps. Une grande table, des assiettes à
+              partager, et une cuisine qui laisse parler les ingrédients.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="reservation" class="wrap section reservation">
+        <div>
+          <p class="eyebrow">03 / On vous garde une place ?</p>
+          <h2>À vous de choisir<br />le moment.</h2>
+          <p>
+            Testez le formulaire : il produit un récapitulatif local. Aucune donnée n’est envoyée et
+            aucune table n’est réellement réservée.
+          </p>
+        </div>
+        <form id="booking">
+          <label
+            >Votre prénom<input
+              name="name"
+              required
+              maxlength="60"
+              autocomplete="given-name"
+              placeholder="Camille"
+          /></label>
+          <div class="form-row">
+            <label>Date<input type="date" name="date" required /></label
+            ><label
+              >Service<select name="time">
+                <option>12:00</option>
+                <option>13:00</option>
+                <option>19:00</option>
+                <option>20:00</option>
+                <option>21:00</option>
+              </select></label
+            >
+          </div>
+          <label
+            >Nombre de personnes<select name="guests">
+              <option value="1">1 personne</option>
+              <option value="2" selected>2 personnes</option>
+              <option value="3">3 personnes</option>
+              <option value="4">4 personnes</option>
+              <option value="5">5 personnes</option>
+              <option value="6">6 personnes</option>
+            </select></label
+          ><button class="button" type="submit" disabled>Simuler la réservation ↗</button>
+          <p id="booking-result" role="status"></p>
+          <noscript
+            >Activez JavaScript pour tester la réservation. La carte reste consultable.</noscript
+          >
+        </form>
+      </section>
+    </main>
+    <footer class="wrap">
+      <a class="brand" href="#">table.</a>
+      <p>Un concept de site de restaurant.<br />Démonstration HTML, CSS et JavaScript.</p>
+      <a href="../boutique/index.html">Explorer la boutique démo ↗</a>
+    </footer>
+  </body>
+</html>

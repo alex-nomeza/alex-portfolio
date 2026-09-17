@@ -1,89 +1,44 @@
 ---
-import { withBase } from '../../utils/paths';
+import { introduction } from '../../data/home';
+import { profile } from '../../data/profile';
+import { LinkButton } from '../ui/link-button';
 ---
 
-<section class="hero" aria-labelledby="home-title">
-  <div class="hero-content container">
-    <p class="hero-kicker">
-      <span>Alex Mezan</span>
-      <span aria-hidden="true">/</span>
-      <span>Nosy Be, Madagascar</span>
-    </p>
-    <h1 id="home-title" class="hero-title">Designer &amp; Developer</h1>
-    <p class="hero-lede">
-      Designing identities, editorial experiences, digital products and visual systems — where
-      design and code meet.
-    </p>
-    <p class="hero-actions">
-      <a class="button button--solid" data-dir="down" href="#selected-work">Selected work</a>
-      <a class="button button--outline" href={withBase('contact/')}>Get in touch</a>
-    </p>
+<section id="about" class="hero" aria-labelledby="home-title">
+  <p class="eyebrow">{introduction.location}</p>
+  <h1 id="home-title">{introduction.name}</h1>
+  <p class="hero-role">{introduction.role}</p>
+  <p class="hero-lede">{introduction.bio}</p>
+  <div class="profile-links">
+    <LinkButton href={profile.githubUrl} direction="external">GitHub</LinkButton>
+    <LinkButton href={`mailto:${profile.email}`}>Me contacter</LinkButton>
   </div>
 </section>
-
 <style>
   .hero {
-    min-height: calc(100svh - 4.5625rem);
-  }
-
-  .hero-content {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-6);
-    align-content: center;
-    justify-items: center;
-    min-height: inherit;
-    padding-block: clamp(2rem, 5vh, 4rem);
-    text-align: center;
+    align-content: start;
+    gap: var(--space-4);
   }
-
-  .hero-kicker {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-3);
-    margin: 0;
-    color: var(--color-text-muted);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-  }
-
-  .hero-title {
-    max-width: none;
-    margin: 0;
+  .hero h1 {
     font-size: var(--font-size-hero);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--tracking-tight);
-    line-height: var(--line-tight);
-    white-space: nowrap;
+    line-height: var(--line-snug);
+    max-width: none;
+    text-wrap: initial;
   }
-
   .hero-lede {
-    max-width: 42ch;
+    max-width: var(--text-max);
     margin: 0;
+    font-size: var(--font-size-body);
     color: var(--color-text-muted);
-    font-size: var(--font-size-body-lg);
-    text-wrap: pretty;
   }
-
-  .hero-actions {
+  .hero-role {
+    margin: 0;
+    font-size: var(--font-size-body-lg);
+  }
+  .profile-links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-4) var(--space-6);
-    margin: var(--space-2) 0 0;
-  }
-
-  @media (max-width: 36rem) {
-    .hero {
-      min-height: calc(100svh - 6.75rem);
-    }
-
-    .hero-content {
-      gap: var(--space-5);
-      padding-block: clamp(1.5rem, 4vh, 2.5rem);
-    }
+    gap: var(--space-2) var(--space-5);
   }
 </style>

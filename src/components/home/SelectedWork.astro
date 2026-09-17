@@ -1,146 +1,73 @@
 ---
-import { Image } from 'astro:assets';
 import { getPublishedProjects, getFeaturedProjects } from '../../utils/projects';
 import { withBase } from '../../utils/paths';
+import { CollectionEmpty } from '../blocks/collection-empty';
 
 const featured = await getFeaturedProjects();
-const selected = (featured.length > 0 ? featured : await getPublishedProjects()).slice(0, 6);
+const selected = (featured.length > 0 ? featured : await getPublishedProjects()).slice(0, 5);
 ---
 
-<section id="selected-work" class="section container" aria-labelledby="selected-work-title">
-  <div class="section-head">
-    <h2 id="selected-work-title">Selected Work</h2>
-    <a class="link-arrow" data-dir="right" href={withBase('work/')}>All projects</a>
-  </div>
-
+<section id="selected-work" class="selected-projects" aria-labelledby="selected-work-title">
+  <h2 id="selected-work-title">Quelques projets</h2>
   {
     selected.length === 0 ? (
-      <p class="section-empty">Selected projects are being prepared for publication.</p>
+      <CollectionEmpty
+        title="Projets à venir"
+        description="Les projets sélectionnés sont en cours de préparation."
+      />
     ) : (
-      <ol class="work-grid">
-        {selected.map((project, index) => (
-          <li class="work-item">
-            <a class="work-media" href={withBase(`work/${project.id}/`)}>
-              <span class="work-index">{String(index + 1).padStart(2, '0')}</span>
-              <Image
-                src={project.data.cover}
-                alt={project.data.coverAlt}
-                widths={[480, 768, 1024]}
-                sizes="(min-width: 48rem) 44vw, 100vw"
-                loading={index < 2 ? 'eager' : 'lazy'}
-              />
-            </a>
-            <div class="work-caption">
-              <h3 class="work-title">
-                <a href={withBase(`work/${project.id}/`)}>{project.data.title}</a>
-              </h3>
-              <p class="work-meta">
-                <span>{project.data.disciplines.join(', ')}</span>
-                <span aria-hidden="true">·</span>
-                <span>{project.data.year}</span>
-              </p>
-            </div>
+      <ul class="project-list">
+        {selected.map((project) => (
+          <li>
+            <a href={withBase(`work/${project.id}/`)}>{project.data.title}</a>
+            <p>{project.data.summary}</p>
           </li>
         ))}
-      </ol>
+      </ul>
     )
   }
 </section>
 
 <style>
-  .section-empty {
-    margin: var(--space-7) 0 0;
-    color: var(--color-text-muted);
+  #selected-work {
+    min-width: 0;
+  }
+  h2 {
     font-size: var(--font-size-body-lg);
+    line-height: var(--line-snug);
   }
 
-  .work-grid {
+  .project-list {
     display: grid;
-    gap: var(--space-8) var(--page-gutter);
-    margin: var(--space-8) 0 0;
+    gap: var(--space-5);
+    margin: var(--space-5) 0 0;
     padding: 0;
     list-style: none;
   }
 
-  @media (min-width: 48rem) {
-    .work-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  .work-item {
-    display: grid;
-    gap: var(--space-4);
-  }
-
-  .work-media {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    aspect-ratio: var(--ratio-cover);
-    background: var(--color-border);
-  }
-
-  .work-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--duration-slow) var(--ease-out);
-  }
-
-  .work-media:hover img {
-    transform: scale(1.03);
-  }
-
-  .work-index {
-    position: absolute;
-    z-index: 1;
-    top: var(--space-4);
-    left: var(--space-4);
-    color: var(--color-inverse-text);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-    mix-blend-mode: difference;
-  }
-
-  .work-caption {
+  .project-list a {
+    font-family: var(--font-display);
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: var(--space-3) var(--space-5);
-  }
-
-  .work-title {
-    margin: 0;
-    font-size: var(--font-size-h3);
+    align-items: center;
+    min-height: var(--control-height);
+    padding: var(--space-2) 0;
+    font-size: var(--font-size-body);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--tracking-heading);
     line-height: var(--line-snug);
-  }
-
-  .work-title a {
     text-decoration: none;
+    width: fit-content;
+    transition: color var(--duration-fast) var(--ease-out);
   }
-
-  .work-title a:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-  }
-
-  .work-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
+  .project-list p {
     margin: 0;
     color: var(--color-text-muted);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
+    font-size: var(--font-size-nav);
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .work-media:hover img {
-      transform: none;
-    }
+  .project-list a:hover,
+  .project-list a:focus-visible {
+    text-decoration: underline;
+    color: var(--color-text-muted);
   }
 </style>

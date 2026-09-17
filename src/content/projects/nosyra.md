@@ -1,52 +1,30 @@
 ---
 title: 'Nosyra'
-subtitle: 'A focused workspace for research, structured information and decisions.'
-summary: 'A product and SaaS interface project spanning product design, user experience and frontend development.'
+subtitle: 'Un espace de travail dédié à la recherche, aux informations structurées et aux décisions.'
+summary: 'Un concept d’interface SaaS pour rechercher, comparer et organiser des informations dans un même espace.'
 year: 2026
 order: 40
 status: 'published'
 featured: true
 disciplines:
-  - 'Product Design'
-  - 'UI/UX'
-  - 'Frontend Development'
+  - 'Design de produit'
+  - 'Interface et expérience utilisateur'
+  - 'Développement frontend'
 role:
-  - 'Product Design'
-  - 'UX Architecture'
-  - 'Frontend Direction'
+  - 'Design de produit'
+  - 'Architecture de l’expérience utilisateur'
+  - 'Direction du développement frontend'
 cover: '../../assets/images/projects/nosyra-generated.png'
-coverAlt: 'Dark product interface planes with structured workflows and restrained amber highlights.'
+coverAlt: 'Plans d’une interface sombre avec des parcours structurés et de discrets accents ambrés.'
 seo:
-  title: 'Nosyra — Product & Interface Design'
-  description: 'A SaaS product concept by Alex Mezan exploring structured research, focused workflows and a scalable interface system.'
+  title: 'Nosyra — Design de produit et d’interface'
+  description: 'Un concept d’interface SaaS pour rechercher, comparer et organiser des informations dans un même espace. Par Alex Rafanomezantsoa.'
 ---
 
-## Overview
+## Organiser la recherche
 
-Nosyra is a SaaS product concept for collecting, organizing and reviewing
-structured information. It is designed as a focused working environment where
-research, search results and decisions can live in one coherent system.
+Nosyra est un concept de produit SaaS pour collecter, organiser et examiner des informations structurées. Il réunit la recherche, les résultats et les décisions dans un même espace de travail.
 
-## Challenge
+## Des actions et des repères
 
-Information-heavy tools often become dense collections of tables, filters and
-detached dashboards. The challenge was to support complex workflows without
-making every screen feel equally important or forcing users to keep the entire
-system in mind.
-
-## Product structure
-
-The experience is organized around a small set of repeatable actions: search,
-review, compare, save and follow progress. A persistent navigation model provides
-orientation, while contextual panels keep secondary information close to the
-task without interrupting the main workflow.
-
-The interface uses a compact typographic scale, disciplined spacing and a dark
-working surface with restrained amber signals. Color indicates focus and status;
-it is never the only source of meaning.
-
-## Contribution
-
-The concept covers product framing, user flows, information hierarchy,
-interaction patterns and frontend direction. A modular interface system supports
-future features while keeping the primary tasks direct and understandable.
+L’expérience repose sur quelques actions récurrentes : rechercher, examiner, comparer, enregistrer et suivre l’avancement. Une navigation persistante facilite le repérage, tandis que des panneaux contextuels gardent les informations secondaires à proximité sans interrompre la tâche principale.

@@ -1,171 +1,93 @@
 ---
 import { getCollection } from 'astro:content';
+import { labStatusLabels } from '../../data/labels';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { withBase } from '../../utils/paths';
+import { Badge } from '../../components/ui/badge';
+import { CollectionEmpty } from '../../components/blocks/collection-empty';
+import { LinkButton } from '../../components/ui/link-button';
 
 const entries = (await getCollection('lab', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title),
+  (a, b) => b.data.year - a.data.year || a.data.title.localeCompare(b.data.title, 'fr'),
 );
 ---
 
 <BaseLayout
-  title="Lab — Alex Mezan"
-  description="Experiments, prototypes and technical explorations by Alex Mezan."
+  title="Laboratoire — Alex Rafanomezantsoa"
+  description="Expérimentations, prototypes et explorations techniques d’Alex Rafanomezantsoa."
 >
-  <section class="page-shell" aria-labelledby="lab-title">
-    <div class="page-intro">
-      <p class="eyebrow">Experiments</p>
-      <h1 id="lab-title">Lab</h1>
-      <p class="lede">
-        A working space for language tools, prototypes, visual research and creative technology.
+  <div class="container editorial-page editorial-grid">
+    <header class="editorial-heading">
+      <p class="eyebrow">Recherches et essais</p>
+      <h1>Laboratoire.</h1>
+      <p>
+        Des pistes en cours, des prototypes et des notes de conception autour de l’image, des
+        données et du code.
       </p>
-    </div>
+      <LinkButton href={withBase('work/')}>Découvrir les projets</LinkButton>
+    </header>
     {
-      entries.length === 0 ? (
-        <p class="empty-state">
-          Experiments remain off the public index until their scope, status and supporting links can
-          be documented accurately.
-        </p>
-      ) : (
-        <ol class="lab-list">
-          {entries.map((entry, index) => (
-            <li class="lab-entry">
-              <article aria-labelledby={`lab-entry-${index}`}>
-                <header class="lab-entry-header">
-                  <div class="lab-entry-index" aria-hidden="true">
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
-                  <div class="lab-entry-title">
-                    <p class="lab-entry-meta">
-                      <span>{entry.data.year}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{entry.data.status}</span>
-                    </p>
-                    <h2 id={`lab-entry-${index}`}>
-                      <a href={withBase(`lab/${entry.id}/`)}>{entry.data.title}</a>
-                    </h2>
-                    <p class="lab-entry-summary">{entry.data.summary}</p>
-                  </div>
-                  <ul class="lab-tags" aria-label={`${entry.data.title} tags`}>
-                    {entry.data.tags.map((tag) => (
-                      <li>{tag}</li>
-                    ))}
-                  </ul>
-                </header>
-                <p class="lab-entry-action">
-                  <a class="link-arrow" data-dir="right" href={withBase(`lab/${entry.id}/`)}>
-                    Read experiment
-                  </a>
+      entries.length > 0 ? (
+        <ul class="experiments" aria-label="Expérimentations">
+          {entries.map((entry) => (
+            <li>
+              <a href={withBase(`lab/${entry.id}/`)} aria-labelledby={`lab-${entry.id}`}>
+                <p class="eyebrow">
+                  <Badge variant="outline">{labStatusLabels[entry.data.status]}</Badge> ·{' '}
+                  {entry.data.year}
                 </p>
-              </article>
+                <h2 id={`lab-${entry.id}`}>
+                  {entry.data.title}
+                  <span aria-hidden="true"> ↗</span>
+                </h2>
+                <p class="experiment-summary">{entry.data.summary}</p>
+                <p class="experiment-tags">{entry.data.tags.join(' · ')}</p>
+              </a>
             </li>
           ))}
-        </ol>
+        </ul>
+      ) : (
+        <CollectionEmpty
+          title="Expérimentations à venir"
+          description="Les expérimentations sont en cours de préparation."
+        />
       )
     }
-  </section>
+  </div>
 </BaseLayout>
-
 <style>
-  .lab-list {
-    display: grid;
-    gap: 0;
+  .experiments {
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
+  }
+  .experiments li + li {
     border-top: 1px solid var(--color-border);
   }
-
-  .lab-entry {
-    padding-block: var(--space-8);
-    border-bottom: 1px solid var(--color-border);
-  }
-
-  .lab-entry article {
-    display: grid;
-    gap: var(--space-6);
-  }
-
-  .lab-entry-header {
-    display: grid;
-    gap: var(--space-5) var(--page-gutter);
-  }
-
-  .lab-entry-index,
-  .lab-entry-meta,
-  .lab-tags {
-    color: var(--color-text-muted);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-  }
-
-  .lab-entry-index {
-    color: var(--color-border);
-    font-size: clamp(2.5rem, 6vw, 5.5rem);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: -0.06em;
-    line-height: 0.8;
-  }
-
-  .lab-entry-index,
-  .lab-entry-meta,
-  .lab-entry-summary {
-    margin: 0;
-  }
-
-  .lab-entry-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-  }
-
-  .lab-entry h2 {
-    font-size: var(--font-size-title);
+  .experiments h2 {
+    margin: var(--space-3) 0;
+    font-size: var(--font-size-body-lg);
     line-height: var(--line-snug);
-    letter-spacing: var(--tracking-heading);
   }
-
-  .lab-entry h2 a {
+  .experiments a {
+    display: block;
+    padding-block: var(--space-6);
     text-decoration: none;
   }
-
-  .lab-entry h2 a:hover {
+  .experiments li:first-child a {
+    padding-top: 0;
+  }
+  .experiments a:is(:hover, :focus-visible) h2 {
     text-decoration: underline;
-    text-underline-offset: 0.15em;
   }
-
-  .lab-entry-summary {
-    max-width: 46ch;
-    margin-top: var(--space-4);
+  .experiment-summary {
+    margin: 0;
+    max-width: 50ch;
     color: var(--color-text-muted);
-    font-size: var(--font-size-body-lg);
-    text-wrap: pretty;
   }
-
-  .lab-tags {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: start;
-    gap: var(--space-2) var(--space-4);
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .lab-entry-action {
-    margin: 0;
-  }
-
-  @media (min-width: 56rem) {
-    .lab-entry-header {
-      grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1.35fr) minmax(12rem, 0.6fr);
-    }
-
-    .lab-entry-action {
-      padding-left: calc(8rem + var(--page-gutter));
-    }
+  .experiment-tags {
+    margin: var(--space-4) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-nav);
   }
 </style>

@@ -1,38 +1,29 @@
 ---
-title: 'Excel Analytics Tool'
-summary: 'A product and data experiment turning complex spreadsheet analysis into a clearer decision-making workflow.'
+title: 'Outil d’analyse Excel'
+summary: 'Un prototype pour distinguer données sources, hypothèses et résultats dans le parcours d’analyse d’un tableur.'
 year: 2026
 status: 'prototype'
 draft: false
 tags:
-  - 'Data'
-  - 'Product Design'
-  - 'UX'
-  - 'Spreadsheet Tools'
+  - 'Données'
+  - 'Design de produit'
+  - 'Expérience utilisateur'
+  - 'Outils pour tableurs'
 featured: true
 ---
 
-## Overview
+## Clarifier le parcours d’analyse
 
-Excel Analytics Tool is a prototype for organizing raw spreadsheet data into a
-more understandable analytical workflow. It explores how familiar tools can be
-given stronger structure, clearer hierarchy and more useful feedback.
+Ce prototype organise les données brutes d’un tableur dans un parcours d’analyse plus compréhensible. Il explore la manière de structurer des outils familiers, de clarifier leur hiérarchie et d’améliorer les retours à l’utilisateur.
 
-## Problem
+## Des informations difficiles à distinguer
 
-Large workbooks often mix source data, calculations, controls and reporting in
-the same visual space. This makes errors harder to identify and forces users to
-remember relationships that the interface should communicate.
+Les classeurs volumineux mélangent souvent données sources, calculs, contrôles et rapports dans un même espace visuel. Les erreurs deviennent difficiles à repérer et l’utilisateur doit mémoriser des relations que l’interface devrait rendre visibles.
 
-## Product approach
+## Approche produit
 
-The concept separates data preparation, assumptions, analysis and presentation
-into distinct stages. Reusable controls make scenarios easier to compare, while
-consistent naming, validation and status cues improve confidence in the results.
+Le concept sépare la préparation des données, les hypothèses, l’analyse et la présentation. Des contrôles réutilisables facilitent la comparaison des scénarios ; des noms cohérents, la validation et des indications d’état renforcent la confiance dans les résultats.
 
 ## Direction
 
-The interface remains compatible with spreadsheet habits but applies product
-design principles to navigation, hierarchy and error prevention. The experiment
-shows how modest structural decisions can turn a dense workbook into a more
-focused operational tool.
+L’interface conserve les habitudes du tableur tout en appliquant les principes de conception produit à la navigation, à la hiérarchie et à la prévention des erreurs. Des choix de structure modestes permettent de rendre le classeur plus facile à utiliser.

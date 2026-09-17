@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Marge, démonstration de studio créatif : portfolio filtrable et brief à télécharger."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Marge — Studio créatif</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <div class="demo">Démo de portfolio · Studio et projets fictifs · Aucun message transmis</div>
+    <header class="wrap">
+      <a class="logo" href="./index.html" aria-label="Marge, accueil">marge<span>↗</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#projets">Projets</a><a href="#approche">Approche</a
+        ><a href="#brief">Votre brief ↗</a>
+      </nav>
+    </header>
+    <main id="contenu">
+      <section class="wrap hero">
+        <p class="eyebrow">Studio de design / Concept indépendant</p>
+        <h1>Du caractère.<br />De la <em>clarté.</em></h1>
+        <div class="hero-bottom">
+          <span class="asterisk" aria-hidden="true">✳</span>
+          <p>
+            Identités visuelles, éditions et expériences numériques. Un studio imaginaire pour
+            explorer la rencontre entre une idée et sa forme.
+          </p>
+          <a href="#projets">Voir les explorations ↓</a>
+        </div>
+      </section>
+      <section id="projets" class="wrap projects">
+        <div class="section-heading">
+          <h2>Explorations choisies<span> / 01—04</span></h2>
+          <div class="filters" aria-label="Filtrer les projets" hidden>
+            <button type="button" data-filter="all" aria-pressed="true">Tout</button
+            ><button type="button" data-filter="identite" aria-pressed="false">Identité</button
+            ><button type="button" data-filter="edition" aria-pressed="false">Édition</button
+            ><button type="button" data-filter="digital" aria-pressed="false">Digital</button>
+          </div>
+        </div>
+        <p id="project-status" class="small" role="status"></p>
+        <div class="project-grid">
+          <article data-category="identite">
+            <div class="art terrain" aria-hidden="true">
+              <span class="art-label">EXPLORATION 01 / IDENTITÉ</span
+              ><strong>TER<br />RAIN<span>®</span></strong
+              ><span>Les idées prennent racine.</span>
+            </div>
+            <div class="caption">
+              <h3>Terrain</h3>
+              <span>Identité visuelle</span>
+            </div>
+            <details>
+              <summary>Lire le concept</summary>
+              <p>
+                Une identité fictive pour un atelier de paysage : un mot-signe compact, une grille
+                solide et des supports qui laissent de la place au vivant.
+              </p>
+            </details>
+          </article>
+          <article data-category="edition">
+            <div class="art revue" aria-hidden="true">
+              <div class="book">
+                <span>REVUE / N° 01</span><strong>Entre<br /><em>les lignes.</em></strong
+                ><span>Fragments d’un quotidien observé.</span>
+              </div>
+            </div>
+            <div class="caption">
+              <h3>Entre les lignes</h3>
+              <span>Édition</span>
+            </div>
+            <details>
+              <summary>Lire le concept</summary>
+              <p>
+                Une revue culturelle imaginaire. Les contrastes typographiques organisent la
+                lecture, du titre de couverture aux notes de bas de page.
+              </p>
+            </details>
+          </article>
+          <article data-category="digital">
+            <div class="art index" aria-hidden="true">
+              <span class="art-label">INDEX / ARCHIVE NUMÉRIQUE</span
+              ><strong>Une idée<br />en appelle<br /><em>une autre.</em></strong>
+              <div class="index-line">Explorer les collections <span>↗</span></div>
+            </div>
+            <div class="caption">
+              <h3>Index</h3>
+              <span>Design digital</span>
+            </div>
+            <details>
+              <summary>Lire le concept</summary>
+              <p>
+                Un concept d’archive numérique pour parcourir des ressources créatives. La structure
+                privilégie le classement, la recherche et la lisibilité.
+              </p>
+            </details>
+          </article>
+          <article data-category="identite">
+            <div class="art pause" aria-hidden="true">
+              <span class="art-label">EXPLORATION 04 / IDENTITÉ</span
+              ><strong>pause<span>—</span></strong
+              ><span>Le temps d’un café.</span>
+            </div>
+            <div class="caption">
+              <h3>Pause</h3>
+              <span>Identité visuelle</span>
+            </div>
+            <details>
+              <summary>Lire le concept</summary>
+              <p>
+                Un café fictif, un nom court et un système visuel calme. Le tiret prolonge le mot et
+                donne son rythme aux menus et aux affiches.
+              </p>
+            </details>
+          </article>
+        </div>
+      </section>
+      <section id="approche" class="wrap approach">
+        <div>
+          <p class="eyebrow">L’approche</p>
+          <h2>Faire juste.<br /><em>Puis faire vivre.</em></h2>
+        </div>
+        <ol>
+          <li>
+            <span>01</span>
+            <div>
+              <h3>Comprendre</h3>
+              <p>Définir le public, le message et le problème à résoudre avant de dessiner.</p>
+            </div>
+          </li>
+          <li>
+            <span>02</span>
+            <div>
+              <h3>Donner forme</h3>
+              <p>
+                Explorer la typographie, la composition et les usages pour construire un langage
+                cohérent.
+              </p>
+            </div>
+          </li>
+          <li>
+            <span>03</span>
+            <div>
+              <h3>Mettre en œuvre</h3>
+              <p>
+                Décliner le système sur les supports utiles et vérifier sa lisibilité à chaque
+                échelle.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+      <section id="brief" class="wrap brief">
+        <div>
+          <p class="eyebrow">Une idée en tête ?</p>
+          <h2>Tout commence<br />par <em>quelques mots.</em></h2>
+          <p>
+            Décrivez votre projet et téléchargez votre brief. Le fichier est créé sur votre appareil
+            ; vos informations ne sont ni stockées ni envoyées.
+          </p>
+        </div>
+        <form id="brief-form">
+          <label
+            >Nom du projet<input
+              name="project"
+              required
+              maxlength="100"
+              placeholder="Ex. Une maison d’édition" /></label
+          ><label
+            >Votre besoin<select name="service">
+              <option>Identité visuelle</option>
+              <option>Site web</option>
+              <option>Édition</option>
+              <option>Plusieurs supports</option>
+            </select></label
+          ><label
+            >Votre idée<textarea
+              name="description"
+              required
+              minlength="20"
+              maxlength="3000"
+              rows="5"
+              placeholder="Le contexte, le public et ce que vous souhaitez créer…"
+            ></textarea
+            ><span class="small">20 caractères minimum.</span></label
+          ><label
+            >Échéance souhaitée <span class="small">(facultatif)</span
+            ><input name="deadline" maxlength="100" placeholder="Ex. Dans trois mois" /></label
+          ><button type="submit" disabled>
+            Télécharger mon brief <span aria-hidden="true">↗</span>
+          </button>
+          <p id="brief-result" role="status"></p>
+          <noscript>Activez JavaScript pour créer votre fichier de brief.</noscript>
+        </form>
+      </section>
+    </main>
+    <footer class="wrap">
+      <a class="logo" href="#">marge↗</a>
+      <p>Studio fictif · Démonstration HTML, CSS & JavaScript</p>
+      <a href="../restaurant/index.html">Explorer le restaurant démo ↗</a>
+    </footer>
+  </body>
+</html>

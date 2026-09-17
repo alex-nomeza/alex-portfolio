@@ -1,34 +1,25 @@
 ---
-title: 'Malagasy NLP'
-summary: 'Python-based experiments focused on Malagasy language tools, natural-language processing and open-source research.'
+title: 'Traitement automatique du malgache'
+summary: 'Des prototypes Python pour préparer et analyser des textes en malgache : normalisation, unités lexicales et jeux de données.'
 year: 2026
 status: 'prototype'
 draft: false
 tags:
-  - 'NLP'
-  - 'Malagasy'
+  - 'Traitement des langues'
+  - 'Malgache'
   - 'Python'
-  - 'Open Source'
+  - 'Logiciel libre'
 featured: true
 ---
 
-## Overview
+## Des outils pour les textes en malgache
 
-Malagasy NLP is a working area for language tools, Python experiments and
-open-source exploration centered on Malagasy. The goal is to investigate how
-small, practical tools can support text preparation, analysis and future
-language-focused applications.
+Cet espace réunit des outils linguistiques, des expérimentations Python et des explorations libres autour du malgache. Il étudie comment de petits outils pratiques peuvent faciliter la préparation et l’analyse de textes, ainsi que de futures applications linguistiques.
 
-## Focus
+## Axes de recherche
 
-The experiments explore text normalization, token handling, dataset preparation
-and lightweight evaluation workflows. Particular attention is given to keeping
-the work understandable and reusable in a context where language resources can
-be limited or fragmented.
+Les expérimentations portent sur la normalisation des textes, la manipulation des unités lexicales, la préparation de jeux de données et des méthodes d’évaluation légères. Le travail doit rester compréhensible et réutilisable dans un contexte où les ressources linguistiques peuvent être limitées ou dispersées.
 
-## Approach
+## Approche
 
-Python provides a direct environment for testing ideas, documenting assumptions
-and turning repeated text-processing steps into small tools. The Lab format keeps
-the work open to iteration: prototypes can remain narrow, be compared quickly and
-grow only when their usefulness is clear.
+Python permet de tester des idées, de documenter les hypothèses et de transformer des traitements récurrents en petits outils. Le format du laboratoire favorise des prototypes ciblés, faciles à comparer, qui évoluent lorsque leur utilité est établie.

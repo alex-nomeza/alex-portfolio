@@ -2,18 +2,75 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/home/Hero.astro';
 import SelectedWork from '../components/home/SelectedWork.astro';
-import Capabilities from '../components/home/Capabilities.astro';
 import LabTeaser from '../components/home/LabTeaser.astro';
 import ContactCTA from '../components/home/ContactCTA.astro';
+import { practice, portfolioTools } from '../data/home';
 ---
 
 <BaseLayout
-  title="Alex Mezan — Multidisciplinary Designer & Developer"
-  description="Portfolio of Alex Mezan, a multidisciplinary designer and developer based in Nosy Be, Madagascar."
+  title="Alex Rafanomezantsoa — Designer et développeur pluridisciplinaire"
+  description="Portfolio d’Alex Rafanomezantsoa, designer et développeur pluridisciplinaire à Nosy Be, Madagascar."
 >
-  <Hero />
-  <SelectedWork />
-  <Capabilities />
-  <LabTeaser />
-  <ContactCTA />
+  <div class="profile-page">
+    <Hero />
+    <section aria-labelledby="practice-title">
+      <h2 id="practice-title">Ce que je fais</h2>
+      <ul class="practice-list">
+        {practice.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+    <SelectedWork />
+    <LabTeaser />
+    <section aria-labelledby="tools-title">
+      <h2 id="tools-title">Les outils de ce portfolio</h2>
+      <dl class="tools-list">
+        {
+          portfolioTools.map((tool) => (
+            <div>
+              <>
+                <dt>{tool.name}</dt>
+                <dd>{tool.description}</dd>
+              </>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+    <ContactCTA />
+  </div>
 </BaseLayout>
+
+<style>
+  .profile-page {
+    width: min(100%, var(--content-max));
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+    padding-block: var(--section-space);
+    display: grid;
+    gap: var(--section-space);
+  }
+  h2 {
+    font-size: var(--font-size-body-lg);
+    line-height: var(--line-snug);
+  }
+  .practice-list {
+    display: grid;
+    gap: var(--space-3);
+    margin: var(--space-5) 0 0;
+    padding-left: var(--space-5);
+    color: var(--color-text-muted);
+  }
+  .tools-list {
+    display: grid;
+    gap: var(--space-4);
+    margin: var(--space-5) 0 0;
+  }
+  .tools-list dt {
+    font-weight: var(--font-weight-medium);
+  }
+  .tools-list dd {
+    margin: var(--space-1) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-nav);
+  }
+</style>

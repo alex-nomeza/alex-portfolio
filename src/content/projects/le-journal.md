@@ -1,54 +1,30 @@
 ---
 title: 'Le Journal'
-subtitle: 'An editorial system for contemporary digital publishing.'
-summary: 'An editorial design and art-direction project focused on the structure and visual language of digital publishing.'
+subtitle: 'Un système éditorial pour la publication numérique contemporaine.'
+summary: 'Une étude de publication numérique : grille modulaire, contrastes typographiques et hiérarchie de lecture.'
 year: 2026
 order: 10
 status: 'published'
 featured: true
 disciplines:
-  - 'Art Direction'
-  - 'Editorial Design'
-  - 'Graphic Design'
+  - 'Direction artistique'
+  - 'Design éditorial'
+  - 'Design graphique'
 role:
-  - 'Art Direction'
-  - 'Editorial Design'
-  - 'Digital Publishing'
+  - 'Direction artistique'
+  - 'Design éditorial'
+  - 'Publication numérique'
 cover: '../../assets/images/projects/le-journal-generated.png'
-coverAlt: 'Layered editorial spreads with black geometric forms, fine column lines and a red block.'
+coverAlt: 'Doubles pages superposées avec des formes géométriques noires, de fines lignes de colonnes et un bloc rouge.'
 seo:
-  title: 'Le Journal — Editorial Design'
-  description: 'A concept study by Alex Mezan exploring art direction, typographic hierarchy and modular systems for digital publishing.'
+  title: 'Le Journal — Design éditorial'
+  description: 'Une étude de publication numérique : grille modulaire, contrastes typographiques et hiérarchie de lecture. Par Alex Rafanomezantsoa.'
 ---
 
-## Overview
+## Une publication, plusieurs formats
 
-Le Journal is a concept study for a publication designed to move confidently
-between long-form reading, daily stories and visual culture. The project explores
-how a clear editorial voice can remain recognizable across changing subjects,
-formats and screen sizes.
+Le Journal est une étude conceptuelle de publication associant articles de fond, actualités et culture visuelle. Le projet explore une identité éditoriale reconnaissable à travers différents sujets, formats et tailles d’écran.
 
-## Context
+## Grille et typographie
 
-Digital publications need to deliver information quickly without flattening every
-story into the same template. The challenge was to create a flexible system with
-enough structure for consistency and enough variation for photography,
-illustration and typography to lead when needed.
-
-## Approach
-
-The direction is built around a strict modular grid, large typographic contrasts
-and a restrained palette. Headlines establish rhythm, metadata remains compact,
-and generous whitespace separates editorial levels without relying on decorative
-interface elements.
-
-The system considers covers, article openings, recurring sections, image-led
-features and short updates as parts of one family. On screen, the same hierarchy
-adapts to narrower layouts while preserving reading order and visual tension.
-
-## Contribution
-
-The study covers art direction, editorial hierarchy, layout principles and the
-translation of the visual system into a digital publishing experience. The
-result is a publication framework that feels precise, contemporary and able to
-support very different kinds of content.
+La direction repose sur une grille modulaire rigoureuse, des contrastes typographiques marqués et une palette sobre. Les titres donnent le rythme, les métadonnées restent compactes et les espaces distinguent les niveaux de lecture sans éléments décoratifs.

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Objet, démonstration de boutique : catalogue et panier interactif local."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Objet — Les objets du quotidien</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <p class="demo">
+      Boutique de démonstration · Produits fictifs · Aucun paiement ni commande réelle
+    </p>
+    <header class="wrap">
+      <a href="./index.html" class="logo" aria-label="Objet, accueil">objet<span>®</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#collection">Collection</a><a href="#apropos">À propos</a
+        ><button id="open-cart" type="button" disabled>
+          Panier (<span id="cart-count">0</span>) ↗
+        </button>
+      </nav>
+    </header>
+    <main id="contenu">
+      <section class="wrap hero">
+        <p class="eyebrow">Éditions du quotidien / Collection démo</p>
+        <div class="hero-line">
+          <h1>Peu d’objets.<br /><span>Bien choisis.</span></h1>
+          <p>
+            Des formes simples, une place dans la maison. Explorez une collection imaginaire de
+            céramiques pour tous les jours.<a href="#collection">Parcourir les objets ↓</a>
+          </p>
+        </div>
+      </section>
+      <section class="wrap collection" id="collection">
+        <div class="toolbar">
+          <h2>La collection <span>/ 04</span></h2>
+          <div class="controls" hidden>
+            <label
+              >Catégorie<select id="category">
+                <option value="all">Tous les objets</option>
+                <option value="decoration">Décoration</option>
+                <option value="table">Art de la table</option>
+              </select></label
+            ><label
+              >Trier<select id="sort">
+                <option value="selection">Notre sélection</option>
+                <option value="asc">Prix croissant</option>
+                <option value="desc">Prix décroissant</option>
+              </select></label
+            >
+          </div>
+        </div>
+        <p id="catalog-status" role="status" class="small"></p>
+        <div id="products" class="products">
+          <article data-id="vase" data-category="decoration" data-price="48" data-name="Vase Arche">
+            <div class="art sand" aria-hidden="true">
+              <div class="object vase"></div>
+              <span>01 — Silhouette illustrative</span>
+            </div>
+            <div class="product-title">
+              <h3>Vase Arche</h3>
+              <p>48 €</p>
+            </div>
+            <p class="description">Céramique sable · Décoration</p>
+            <button type="button" class="add" disabled>
+              Ajouter au panier <span aria-hidden="true">+</span
+              ><span class="sr-only"> : Vase Arche</span>
+            </button>
+          </article>
+          <article data-id="coupe" data-category="table" data-price="32" data-name="Coupe Ligne">
+            <div class="art stone" aria-hidden="true">
+              <div class="object bowl"></div>
+              <span>02 — Silhouette illustrative</span>
+            </div>
+            <div class="product-title">
+              <h3>Coupe Ligne</h3>
+              <p>32 €</p>
+            </div>
+            <p class="description">Grès mat · Art de la table</p>
+            <button type="button" class="add" disabled>
+              Ajouter au panier <span aria-hidden="true">+</span
+              ><span class="sr-only"> : Coupe Ligne</span>
+            </button>
+          </article>
+          <article data-id="carafe" data-category="table" data-price="56" data-name="Carafe Haute">
+            <div class="art pale" aria-hidden="true">
+              <div class="object bottle"></div>
+              <span>03 — Silhouette illustrative</span>
+            </div>
+            <div class="product-title">
+              <h3>Carafe Haute</h3>
+              <p>56 €</p>
+            </div>
+            <p class="description">Céramique craie · Art de la table</p>
+            <button type="button" class="add" disabled>
+              Ajouter au panier <span aria-hidden="true">+</span
+              ><span class="sr-only"> : Carafe Haute</span>
+            </button>
+          </article>
+          <article data-id="tasse" data-category="table" data-price="24" data-name="Tasse Ronde">
+            <div class="art clay" aria-hidden="true">
+              <div class="object cup"></div>
+              <span>04 — Silhouette illustrative</span>
+            </div>
+            <div class="product-title">
+              <h3>Tasse Ronde</h3>
+              <p>24 €</p>
+            </div>
+            <p class="description">Grès brun · Art de la table</p>
+            <button type="button" class="add" disabled>
+              Ajouter au panier <span aria-hidden="true">+</span
+              ><span class="sr-only"> : Tasse Ronde</span>
+            </button>
+          </article>
+        </div>
+        <p id="cart-feedback" role="status"></p>
+        <noscript>Activez JavaScript pour filtrer la collection et utiliser le panier.</noscript>
+      </section>
+      <section class="wrap about" id="apropos">
+        <p class="eyebrow">L’idée derrière Objet</p>
+        <h2>Une boutique qui laisse<br />de la place aux objets.</h2>
+        <p>
+          Ce concept explore un catalogue épuré, des informations lisibles et un panier facile à
+          modifier. Les silhouettes sont des illustrations graphiques ; les produits et leurs prix
+          sont des exemples.
+        </p>
+      </section>
+    </main>
+    <footer class="wrap">
+      <a class="logo" href="#">objet</a>
+      <p>Concept de boutique · HTML, CSS & JavaScript</p>
+      <a href="../agence/index.html">Explorer le studio démo ↗</a>
+    </footer>
+    <dialog id="cart" aria-labelledby="cart-title">
+      <div class="dialog-heading">
+        <h2 id="cart-title">Votre sélection.</h2>
+        <button type="button" id="close-cart" aria-label="Fermer le panier">Fermer ×</button>
+      </div>
+      <p class="small">Panier de démonstration. Aucun achat ne sera effectué.</p>
+      <div id="cart-items"></div>
+      <p id="cart-total" class="total" aria-live="polite"></p>
+      <button id="clear-cart" type="button">Vider le panier</button>
+      <p id="storage-note" class="small"></p>
+    </dialog>
+  </body>
+</html>

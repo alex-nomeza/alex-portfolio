@@ -9,9 +9,9 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<nav class="next-project" aria-label="Next project">
+<nav class="next-project" aria-label="Projet suivant">
   <a href={withBase(`work/${project.id}/`)}>
-    <span class="next-label">Next project</span>
+    <span class="next-label">Projet suivant</span>
     <span class="next-title">{project.data.title}</span>
     <span class="next-meta">
       {project.data.disciplines.join(', ')} · {project.data.year}
@@ -32,6 +32,16 @@ const { project } = Astro.props;
     text-decoration: none;
   }
 
+  @media (min-width: 56rem) {
+    .next-project a {
+      grid-template-columns: var(--editorial-left) var(--editorial-right);
+      column-gap: var(--editorial-gap);
+      align-items: baseline;
+    }
+    .next-meta {
+      grid-column: 2;
+    }
+  }
   .next-label {
     color: var(--color-text-muted);
     font-family: var(--font-meta);
@@ -41,13 +51,14 @@ const { project } = Astro.props;
   }
 
   .next-title {
-    font-size: var(--font-size-h2);
+    font-family: var(--font-display);
+    font-size: var(--font-size-body-lg);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--tracking-tight);
-    line-height: var(--line-tight);
+    line-height: var(--line-snug);
   }
 
-  .next-project a:hover .next-title {
+  .next-project a:is(:hover, :focus-visible) .next-title {
     text-decoration: underline;
     text-underline-offset: 0.12em;
   }

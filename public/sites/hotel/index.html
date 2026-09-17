@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Maison Rivage : concept de site hôtelier, chambres et estimation de séjour interactive."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Maison Rivage — Hôtel de caractère</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <div class="demo">
+      Démonstration · Hôtel, chambres et tarifs fictifs · Aucune réservation réelle
+    </div>
+    <header class="wrap">
+      <a class="brand" href="./index.html">Maison Rivage<span>UNE PARENTHÈSE AU CALME</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#chambres">Les chambres</a><a href="#maison">La maison</a
+        ><a href="#sejour">Votre séjour ↗</a>
+      </nav>
+    </header>
+    <main id="contenu">
+      <section class="wrap hero">
+        <div>
+          <p class="eyebrow">Hôtel de caractère / Concept</p>
+          <h1>Le temps<br />de <em>ralentir.</em></h1>
+          <p class="lead">
+            Une maison imaginée pour les matins sans rendez-vous, les livres ouverts et les longues
+            conversations.
+          </p>
+          <a class="button" href="#chambres">Trouver votre chambre ↓</a>
+        </div>
+        <div class="room-art" aria-hidden="true">
+          <div class="window"><span></span></div>
+          <div class="bed"></div>
+          <p>ÉTUDE D’AMBIANCE / MAISON RIVAGE</p>
+        </div>
+      </section>
+      <section id="chambres" class="wrap section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 / Vos espaces</p>
+            <h2>Trois façons<br />d’habiter la maison.</h2>
+          </div>
+          <p>Chambres et prix de démonstration.<br />Le tarif s’entend par chambre et par nuit.</p>
+        </div>
+        <div class="rooms">
+          <article>
+            <p class="number">01</p>
+            <h3>La Cour</h3>
+            <p>Un espace compact, un bureau et une ouverture sur une cour intérieure imaginaire.</p>
+            <p class="room-meta">20 m² · 2 personnes maximum</p>
+            <p class="price">120 € <span>/ nuit</span></p>
+            <a href="#sejour" data-room="cour">Choisir La Cour ↗</a>
+          </article>
+          <article>
+            <p class="number">02</p>
+            <h3>La Terrasse</h3>
+            <p>Une chambre prolongée par un espace extérieur, pour commencer la journée dehors.</p>
+            <p class="room-meta">28 m² · 2 personnes maximum</p>
+            <p class="price">165 € <span>/ nuit</span></p>
+            <a href="#sejour" data-room="terrasse">Choisir La Terrasse ↗</a>
+          </article>
+          <article>
+            <p class="number">03</p>
+            <h3>La Suite</h3>
+            <p>Deux espaces de repos et un salon, pour séjourner en famille ou entre amis.</p>
+            <p class="room-meta">42 m² · 4 personnes maximum</p>
+            <p class="price">240 € <span>/ nuit</span></p>
+            <a href="#sejour" data-room="suite">Choisir La Suite ↗</a>
+          </article>
+        </div>
+      </section>
+      <section id="maison" class="story">
+        <div class="wrap split">
+          <p class="eyebrow">02 / L’esprit de la maison</p>
+          <div>
+            <h2>Peu de choses.<br /><em>À la bonne place.</em></h2>
+            <p>
+              Une bibliothèque commune, une table de petit-déjeuner et un patio. Ce concept hôtelier
+              met en scène une hospitalité simple, avec des espaces pensés pour se retrouver ou
+              s’isoler.
+            </p>
+            <p class="muted">
+              Cette maison est fictive. Les services décrits illustrent le contenu d’un site
+              hôtelier.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="sejour" class="wrap section split">
+        <div>
+          <p class="eyebrow">03 / Composer votre séjour</p>
+          <h2>Quelques nuits,<br /><em>à votre rythme.</em></h2>
+          <p class="lead">
+            Choisissez vos dates et votre chambre pour calculer un budget indicatif. Ce simulateur
+            ne vérifie aucune disponibilité.
+          </p>
+        </div>
+        <form id="stay-form">
+          <label
+            >Chambre<select name="room">
+              <option value="cour" data-rate="120" data-capacity="2">La Cour — 120 € / nuit</option>
+              <option value="terrasse" data-rate="165" data-capacity="2">
+                La Terrasse — 165 € / nuit
+              </option>
+              <option value="suite" data-rate="240" data-capacity="4">
+                La Suite — 240 € / nuit
+              </option>
+            </select></label
+          >
+          <div class="form-row">
+            <label>Arrivée<input type="date" name="arrival" required /></label
+            ><label>Départ<input type="date" name="departure" required /></label>
+          </div>
+          <label
+            >Voyageurs<select name="guests">
+              <option value="1">1 personne</option>
+              <option value="2" selected>2 personnes</option>
+              <option value="3">3 personnes</option>
+              <option value="4">4 personnes</option>
+            </select></label
+          ><label class="check"
+            ><input type="checkbox" name="breakfast" />Petit-déjeuner · 15 € / personne /
+            nuit</label
+          ><button type="submit" disabled>Estimer mon séjour ↗</button>
+          <div id="stay-result" class="result" role="status"></div>
+          <noscript>Activez JavaScript pour calculer une estimation.</noscript>
+        </form>
+      </section>
+    </main>
+    <footer class="wrap">
+      <span class="brand">Maison Rivage</span>
+      <p>Concept hôtelier · HTML, CSS & JavaScript</p>
+      <a href="../voyage/index.html">Découvrir la démo voyage ↗</a>
+    </footer>
+  </body>
+</html>

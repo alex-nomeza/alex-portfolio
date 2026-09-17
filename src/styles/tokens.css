@@ -2,30 +2,33 @@
   --color-bg: #f7f7f5;
   --color-surface: #ffffff;
   --color-text: #111111;
-  --color-text-muted: #737373;
-  --color-border: #d9d9d6;
+  --color-text-muted: #626262;
+  --border: #d9d9d6;
+  --color-border: var(--border);
   --color-inverse-bg: #111111;
   --color-inverse-text: #f7f7f5;
 
-  --font-sans: 'Helvetica Neue', 'Nimbus Sans L', Arial, sans-serif;
-  --font-display: var(--font-sans);
+  --font-sans: 'Inter', Arial, sans-serif;
+  --font-display: 'Bricolage Grotesque', Arial, sans-serif;
+  --font-logo: 'Google Sans', Arial, sans-serif;
   --font-body: var(--font-sans);
   --font-meta: var(--font-sans);
   --font-weight-regular: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-size-display: clamp(3.25rem, 9vw, 8.5rem);
-  --font-size-h1: clamp(2.625rem, 7vw, 7rem);
-  --font-size-h2: clamp(2rem, 4vw, 4.5rem);
-  --font-size-h3: clamp(1.5rem, 2.6vw, 2.375rem);
-  --font-size-hero: clamp(2rem, 6.8vw, 6rem);
-  --font-size-title: clamp(2rem, 4vw, 4.5rem);
-  --font-size-body-lg: clamp(1.25rem, 1.6vw, 1.75rem);
+  --font-size-h1: clamp(2.25rem, 5vw, 4.5rem);
+  --font-size-h2: clamp(1.75rem, 3vw, 2.5rem);
+  --font-size-h3: clamp(1.375rem, 2.2vw, 1.875rem);
+  --font-size-hero: clamp(2.25rem, 3.5vw, 3.5rem);
+  --font-size-title: var(--font-size-h3);
+  --font-size-body-lg: clamp(1.125rem, 1.5vw, 1.375rem);
   --font-size-body-xl: clamp(1.25rem, 2.2vw, 2.25rem);
   --font-size-body: clamp(1rem, 1.1vw, 1.125rem);
   --font-size-meta: 0.75rem;
   --font-size-control: 0.8125rem;
   --font-size-nav: 0.875rem;
+  --font-size-logo: clamp(1.375rem, 2vw, 1.875rem);
 
   --line-tight: 0.95;
   --line-snug: 1.15;
@@ -36,9 +39,12 @@
   --ratio-cover: 4 / 3;
 
   --page-gutter: clamp(1.25rem, 4vw, 4.5rem);
-  --section-space: clamp(5rem, 10vw, 10rem);
-  --content-max: 90rem;
-  --text-max: 70ch;
+  --section-space: clamp(3rem, 6vw, 5rem);
+  --content-max: 82rem;
+  --text-max: 65ch;
+  --editorial-gap: clamp(2rem, 6vw, 6rem);
+  --editorial-left: minmax(0, 0.9fr);
+  --editorial-right: minmax(0, 1.1fr);
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -56,4 +62,12 @@
   --control-height: 2.875rem;
   --control-padding-inline: 1.125rem;
   --control-border: 1px solid var(--color-text);
+  --header-padding-block: var(--space-2);
+  --header-height: calc(var(--control-height) + 2 * var(--header-padding-block));
+}
+
+@media (max-width: 56rem) {
+  :root {
+    --header-height: calc(2 * var(--control-height) + 2 * var(--header-padding-block));
+  }
 }

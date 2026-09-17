@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CvTimeline } from '../components/cv/CvTimeline';
+import { LinkButton } from '../components/ui/link-button';
+import { introduction } from '../data/home';
+import { experiences, education, skills, languages } from '../data/cv';
+import { withBase } from '../utils/paths';
+
+const sections = [
+  { id: 'experiences', title: 'Expériences', entries: experiences.filter((entry) => !entry.draft) },
+  { id: 'formations', title: 'Formations', entries: education.filter((entry) => !entry.draft) },
+];
+const incomplete = sections.some((section) => section.entries.length === 0);
+---
+
+<BaseLayout
+  title="CV — Alex Rafanomezantsoa"
+  description="Le parcours, les formations et les compétences d’Alex Rafanomezantsoa, designer et développeur pluridisciplinaire."
+  noindex={incomplete}
+>
+  <div class="container editorial-page editorial-grid cv-page">
+    <header class="editorial-heading">
+      <p class="eyebrow">Curriculum vitæ · {introduction.location}</p>
+      <h1>Mon parcours.</h1>
+      <p class="cv-role">{introduction.role}</p>
+      <p>{introduction.bio}</p>
+      <nav class="cv-contents" aria-label="Rubriques du CV">
+        <a href="#experiences">Expériences <span aria-hidden="true">↘</span></a>
+        <a href="#formations">Formations <span aria-hidden="true">↘</span></a>
+        <a href="#competences">Compétences <span aria-hidden="true">↘</span></a>
+        {
+          languages.length > 0 && (
+            <a href="#langues">
+              Langues <span aria-hidden="true">↘</span>
+            </a>
+          )
+        }
+      </nav>
+      <div class="page-actions">
+        <LinkButton href={withBase('contact/')} variant="outline">Me contacter</LinkButton>
+        <LinkButton href={withBase('work/')}>Voir les projets</LinkButton>
+      </div>
+    </header>
+    <div class="editorial-stack cv-sections">
+      {
+        sections.map((section, index) => (
+          <section aria-labelledby={section.id} class="cv-section">
+            <div class="cv-section-heading">
+              <span class="eyebrow" aria-hidden="true">
+                0{index + 1}
+              </span>
+              <h2 id={section.id}>{section.title}</h2>
+            </div>
+            {section.entries.length > 0 ? (
+              <CvTimeline entries={section.entries} />
+            ) : (
+              <p class="cv-empty">
+                {section.title === 'Expériences'
+                  ? 'Le détail de mes expériences sera ajouté prochainement.'
+                  : 'Le détail de mes formations sera ajouté prochainement.'}
+              </p>
+            )}
+          </section>
+        ))
+      }
+      <section aria-labelledby="competences" class="cv-section">
+        <div class="cv-section-heading">
+          <span class="eyebrow" aria-hidden="true">03</span>
+          <h2 id="competences">Compétences</h2>
+        </div>
+        <dl class="cv-skills">
+          {
+            skills.map((group) => (
+              <div>
+                <dt>{group.title}</dt>
+                <dd>
+                  <ul role="list">
+                    {group.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            ))
+          }
+        </dl>
+      </section>
+      {
+        languages.length > 0 && (
+          <section aria-labelledby="langues" class="cv-section">
+            <div class="cv-section-heading">
+              <span class="eyebrow" aria-hidden="true">
+                04
+              </span>
+              <h2 id="langues">Langues</h2>
+            </div>
+            <dl class="cv-skills">
+              {languages.map((language) => (
+                <div>
+                  <dt>{language.name}</dt>
+                  <dd>{language.level}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .cv-role {
+    font-size: var(--font-size-body-lg);
+    color: var(--color-text) !important;
+  }
+  .cv-contents {
+    display: grid;
+    max-width: 24rem;
+    margin-block: var(--space-3);
+  }
+  .cv-contents a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--control-height);
+    gap: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-nav);
+    text-decoration: none;
+  }
+  .cv-contents a:hover {
+    text-decoration: underline;
+  }
+  .cv-section {
+    display: grid;
+    gap: var(--space-6);
+  }
+  .cv-section-heading {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+  .cv-section-heading h2 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-snug);
+  }
+  .cv-empty {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+  .cv-skills {
+    display: grid;
+    gap: var(--space-5);
+    margin: 0;
+  }
+  .cv-skills > div {
+    display: grid;
+    gap: var(--space-2) var(--space-5);
+  }
+  .cv-skills dt {
+    font-weight: var(--font-weight-medium);
+  }
+  .cv-skills dd {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+  .cv-skills ul {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  @media (min-width: 40rem) {
+    .cv-skills > div {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+    }
+  }
+</style>

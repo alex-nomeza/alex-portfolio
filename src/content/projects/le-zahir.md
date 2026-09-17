@@ -1,52 +1,30 @@
 ---
 title: 'Le Zahir'
-subtitle: 'A hospitality identity shaped by place, material and atmosphere.'
-summary: 'A hospitality project connecting brand identity, communication and web design in one guest-facing system.'
+subtitle: 'Une identité hôtelière inspirée du lieu, des matières et de l’atmosphère.'
+summary: 'Un concept de marque hôtelière à Nosy Be, entre identité visuelle, matières naturelles et design web.'
 year: 2026
 order: 20
 status: 'published'
 featured: true
 disciplines:
-  - 'Art Direction'
-  - 'Brand Design'
-  - 'Web Design'
+  - 'Direction artistique'
+  - 'Identité de marque'
+  - 'Design web'
 role:
-  - 'Brand Direction'
-  - 'Visual Communication'
-  - 'Web Design'
+  - 'Direction de marque'
+  - 'Communication visuelle'
+  - 'Design web'
 cover: '../../assets/images/projects/le-zahir-generated.png'
-coverAlt: 'Open-air tropical interior framed by dark timber, natural stone and ocean-facing palms.'
+coverAlt: 'Intérieur tropical ouvert, encadré de bois sombre, de pierre naturelle et de palmiers face à l’océan.'
 seo:
-  title: 'Le Zahir — Hospitality Brand & Web Design'
-  description: 'A concept hospitality identity by Alex Mezan connecting place, visual communication and a calm digital guest experience.'
+  title: 'Le Zahir — Identité hôtelière et design web'
+  description: 'Un concept de marque hôtelière à Nosy Be, entre identité visuelle, matières naturelles et design web. Par Alex Rafanomezantsoa.'
 ---
 
-## Overview
+## Une identité ancrée dans le lieu
 
-Le Zahir is a concept hospitality brand imagined for Nosy Be. Its identity brings
-together the character of the location, the tactility of natural materials and
-the clarity expected from a contemporary guest experience.
+Le Zahir est un concept de marque hôtelière imaginé pour Nosy Be. Son identité associe le caractère du lieu, la texture des matières naturelles et la clarté attendue d’une expérience d’accueil contemporaine.
 
-## Context
+## Matières, images et couleurs
 
-The project needed to communicate a sense of place without falling into familiar
-tropical-resort clichés. The visual language had to feel warm and distinctive,
-while remaining practical across booking information, editorial content,
-signage, printed communication and digital touchpoints.
-
-## Direction
-
-The system uses strong framing, quiet typography and a palette drawn from dark
-timber, pale stone, sand, foliage and ocean light. Photography focuses on
-thresholds, materials and atmosphere rather than staged luxury. This creates a
-more grounded and memorable expression of hospitality.
-
-The web direction prioritizes essential guest information, room discovery and
-the relationship between the property and its surroundings. Spacious layouts and
-carefully paced imagery let the experience feel calm without becoming vague.
-
-## Contribution
-
-The concept includes brand direction, communication principles, image art
-direction and the structure of the public website. Every touchpoint is designed
-to feel like part of the same place: considered, tactile and easy to navigate.
+Le système utilise des cadrages affirmés, une typographie discrète et une palette inspirée du bois sombre, de la pierre claire, du sable, du feuillage et de la lumière de l’océan. La photographie privilégie les passages, les matières et l’atmosphère pour une expression de l’hospitalité ancrée dans le lieu.

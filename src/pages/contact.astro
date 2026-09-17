@@ -1,134 +1,76 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const githubUrl = 'https://github.com/alex-nomeza';
-const email = 'alexx.rafanomezantsoa@gmail.com';
+import { profile } from '../data/profile';
+import { introduction } from '../data/home';
+import { LinkButton } from '../components/ui/link-button';
 ---
 
 <BaseLayout
-  title="Contact — Alex Mezan"
-  description="Contact Alex Mezan for multidisciplinary design, editorial, web, product and creative technology collaborations."
+  title="Contact — Alex Rafanomezantsoa"
+  description="Contactez Alex Rafanomezantsoa pour vos projets d’identité visuelle, de design éditorial, de sites web et de produits numériques."
 >
-  <section class="contact container" aria-labelledby="contact-title">
-    <div class="contact-main">
-      <p class="eyebrow">Contact · Nosy Be, Madagascar</p>
-      <h1 id="contact-title">Let’s make something clear, useful and memorable.</h1>
-      <p class="contact-lede">
-        Available for selected collaborations across identity, editorial, web, product and creative
-        technology.
+  <div class="container editorial-page editorial-grid">
+    <header class="editorial-heading">
+      <p class="eyebrow">Contact</p>
+      <h1>Parlons de<br />votre projet.</h1>
+      <p>
+        Identité visuelle, édition, site web ou interface : racontez-moi ce que vous souhaitez
+        construire.
       </p>
+    </header>
+    <div class="editorial-stack">
+      <section class="editorial-section" aria-labelledby="email-title">
+        <h2 id="email-title">Écrivez-moi</h2>
+        <a class="email" href={`mailto:${profile.email}`}>{profile.email}</a>
+        <p>
+          Quelques lignes suffisent pour commencer. Vous pouvez joindre des références ou un brief
+          si vous en avez déjà un.
+        </p>
+      </section>
+      <section class="editorial-section" aria-labelledby="brief-title">
+        <h2 id="brief-title">Pour préparer l’échange</h2>
+        <dl class="brief-list">
+          <div>
+            <dt>Le contexte</dt><dd>Votre activité, le public concerné et l’objectif du projet.</dd>
+          </div>
+          <div><dt>Le besoin</dt><dd>Les supports à concevoir et ce qui existe déjà.</dd></div>
+          <div>
+            <dt>Le cadre</dt><dd>
+              Le calendrier souhaité et le budget envisagé, s’ils sont définis.
+            </dd>
+          </div>
+        </dl>
+      </section>
+      <section class="editorial-section" aria-labelledby="location-title">
+        <h2 id="location-title">{introduction.location}</h2>
+        <p>Heure de Madagascar · UTC+3</p>
+        <LinkButton href={profile.githubUrl} direction="external"
+          >Retrouvez-moi sur GitHub</LinkButton
+        >
+      </section>
     </div>
-
-    <div class="contact-details">
-      <div>
-        <p class="contact-label">Enquiries</p>
-        <a class="contact-link" href={`mailto:${email}`}>
-          {email}
-          <span aria-hidden="true">↗</span>
-        </a>
-        <p class="contact-note">Include the project context, scope and preferred timing.</p>
-      </div>
-      <div>
-        <p class="contact-label">Development</p>
-        <a class="contact-link" href={githubUrl} rel="noopener noreferrer" target="_blank">
-          GitHub · alex-nomeza <span aria-hidden="true">↗</span>
-        </a>
-      </div>
-      <div>
-        <p class="contact-label">Based in</p>
-        <p>Nosy Be, Madagascar<br />EAT · UTC+3</p>
-      </div>
-    </div>
-  </section>
+  </div>
 </BaseLayout>
-
 <style>
-  .contact {
+  .brief-list {
     display: grid;
-    gap: var(--section-space);
-    padding-block: var(--section-space);
-  }
-
-  .contact-main {
-    display: grid;
-    gap: var(--space-6);
-    min-height: min(62vh, 42rem);
-    align-content: center;
-  }
-
-  .contact-main h1 {
-    max-width: 17ch;
-  }
-
-  .contact-lede {
-    max-width: 42ch;
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--font-size-body-xl);
-    text-wrap: pretty;
-  }
-
-  .contact-details {
-    display: grid;
-    gap: var(--space-7) var(--page-gutter);
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .contact-details > div {
-    display: grid;
-    gap: var(--space-3);
-    align-content: start;
-  }
-
-  .contact-details p {
-    max-width: 38ch;
+    gap: var(--space-5);
     margin: 0;
   }
-
-  .contact-note {
-    color: var(--color-text-muted);
-  }
-
-  .contact-label {
-    color: var(--color-text-muted);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
-  }
-
-  .contact-link {
-    width: fit-content;
-    font-size: var(--font-size-body-lg);
+  .brief-list dt {
     font-weight: var(--font-weight-medium);
-    text-decoration: none;
+    font-size: var(--font-size-nav);
   }
-
-  .contact-link:hover {
-    text-decoration: underline;
+  .brief-list dd {
+    margin: var(--space-2) 0 0;
+    color: var(--color-text-muted);
   }
-
-  @media (min-width: 48rem) {
-    .contact-main {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: var(--page-gutter);
-    }
-
-    .contact-main .eyebrow {
-      grid-column: 1 / 5;
-    }
-
-    .contact-main h1 {
-      grid-column: 1 / 10;
-    }
-
-    .contact-lede {
-      grid-column: 8 / 13;
-    }
-
-    .contact-details {
-      grid-template-columns: 1.6fr 0.8fr 0.6fr;
-    }
+  .email {
+    width: fit-content;
+    max-width: 100%;
+    padding-block: var(--space-2);
+    overflow-wrap: anywhere;
+    font-size: var(--font-size-body-lg);
+    text-decoration-thickness: 1px;
   }
 </style>

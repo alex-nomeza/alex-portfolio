@@ -1,156 +1,97 @@
 ---
-import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPublishedProjects } from '../../utils/projects';
 import { withBase } from '../../utils/paths';
-
+import { CollectionEmpty } from '../../components/blocks/collection-empty';
+import { LinkButton } from '../../components/ui/link-button';
+import SiteDemos from '../../components/project/SiteDemos.astro';
 const projects = await getPublishedProjects();
 ---
 
 <BaseLayout
-  title="Work — Alex Mezan"
-  description="Selected multidisciplinary design and development work by Alex Mezan."
+  title="Projets — Alex Rafanomezantsoa"
+  description="Une sélection de projets de design et de développement d’Alex Rafanomezantsoa."
 >
-  <section class="container work" aria-labelledby="work-title">
-    <div class="page-intro">
-      <p class="eyebrow">Index</p>
-      <h1 id="work-title">Work</h1>
-      <p class="lede">Selected work across design, development and visual systems.</p>
+  <div class="container editorial-page editorial-grid">
+    <header class="editorial-heading">
+      <p class="eyebrow">Portfolio</p>
+      <h1>Projets.</h1>
+      <p>
+        Identités, publications et interfaces. Une sélection de concepts et d’études, du langage
+        visuel à l’expérience numérique.
+      </p>
+      <LinkButton href={withBase('lab/')}>Voir aussi le laboratoire</LinkButton>
+    </header>
+    <div class="editorial-stack">
+      {
+        projects.length > 0 ? (
+          <ul class="work-index" aria-label="Projets">
+            {projects.map((project) => (
+              <li>
+                <a href={withBase(`work/${project.id}/`)} aria-labelledby={`project-${project.id}`}>
+                  <div class="work-title">
+                    <h2 id={`project-${project.id}`}>{project.data.title}</h2>
+                    <span aria-hidden="true">↗</span>
+                  </div>
+                  <p class="work-summary">{project.data.summary}</p>
+                  <p class="work-meta">
+                    {project.data.year} · {project.data.disciplines.join(' · ')}
+                  </p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <CollectionEmpty
+            title="Projets à venir"
+            description="Les projets sont en cours de préparation."
+          />
+        )
+      }
+      <SiteDemos />
+      <div class="page-actions">
+        <LinkButton href={withBase('contact/')}>Parlons de votre projet</LinkButton>
+      </div>
     </div>
-
-    {
-      projects.length === 0 ? (
-        <p class="empty-state">
-          Case studies remain off the public index until their role, dates, narrative and imagery
-          can be documented accurately.
-        </p>
-      ) : (
-        <ol class="work-index">
-          {projects.map((project, index) => (
-            <li>
-              <a class="work-row" href={withBase(`work/${project.id}/`)}>
-                <span class="work-plate">
-                  <Image
-                    src={project.data.cover}
-                    alt=""
-                    widths={[160, 320]}
-                    sizes="8rem"
-                    loading={index < 4 ? 'eager' : 'lazy'}
-                  />
-                </span>
-                <span class="work-num">{String(index + 1).padStart(2, '0')}</span>
-                <span class="work-body">
-                  <span class="work-name">{project.data.title}</span>
-                  <span class="work-disc">{project.data.disciplines.join(', ')}</span>
-                </span>
-                <span class="work-year">{project.data.year}</span>
-              </a>
-            </li>
-          ))}
-        </ol>
-      )
-    }
-  </section>
+  </div>
 </BaseLayout>
-
 <style>
-  .work {
-    padding-block: var(--section-space);
-  }
-
   .work-index {
-    margin: var(--space-8) 0 0;
-    padding: 0;
     list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .work-index li + li {
     border-top: 1px solid var(--color-border);
   }
-
-  .work-row {
-    display: grid;
-    grid-template-columns: minmax(12rem, 0.55fr) 2.5rem minmax(0, 1fr) auto;
-    align-items: center;
-    gap: var(--space-5);
-    padding: var(--space-6) 0;
-    border-bottom: 1px solid var(--color-border);
+  .work-index a {
+    display: block;
+    padding-block: var(--space-6);
     text-decoration: none;
   }
-
-  .work-plate {
-    display: block;
-    overflow: hidden;
-    aspect-ratio: var(--ratio-cover);
-    background: var(--color-border);
+  .work-index li:first-child a {
+    padding-top: 0;
   }
-
-  .work-plate img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--duration-slow) var(--ease-out);
-  }
-
-  .work-row:hover .work-plate img {
-    transform: scale(1.04);
-  }
-
-  .work-num,
-  .work-disc,
-  .work-year {
-    color: var(--color-text-muted);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-  }
-
-  .work-body {
-    display: grid;
-    gap: var(--space-2);
-    min-width: 0;
-  }
-
-  .work-name {
-    font-size: var(--font-size-title);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--tracking-heading);
+  .work-index h2 {
+    font-size: var(--font-size-body-lg);
     line-height: var(--line-snug);
   }
-
-  .work-row:hover .work-name {
+  .work-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+  .work-summary {
+    margin: var(--space-3) 0 0;
+    color: var(--color-text-muted);
+  }
+  .work-meta {
+    margin: var(--space-4) 0 0;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-nav);
+  }
+  .work-index a:is(:hover, :focus-visible) h2 {
     text-decoration: underline;
-    text-underline-offset: 0.12em;
-  }
-
-  @media (max-width: 40rem) {
-    .work-row {
-      grid-template-columns: 1fr auto;
-      grid-template-areas:
-        'plate plate'
-        'body meta';
-      gap: var(--space-4);
-      align-items: start;
-    }
-
-    .work-plate {
-      grid-area: plate;
-      width: 100%;
-    }
-
-    .work-num {
-      display: none;
-    }
-
-    .work-body {
-      grid-area: body;
-    }
-
-    .work-year {
-      grid-area: meta;
-      padding-top: 0.45rem;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .work-row:hover .work-plate img {
-      transform: none;
-    }
   }
 </style>

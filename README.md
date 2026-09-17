@@ -1,6 +1,10 @@
-# Alex Mezan Portfolio
+# Alex Rafanomezantsoa Portfolio
 
 A minimal, editorial personal portfolio built with Astro.
+
+Reusable controls use shadcn/ui with Tailwind CSS and Astro's React integration,
+rendered at build time without client hydration. See [UI components](docs/UI_COMPONENTS.md)
+for component usage, styling decisions and validation commands.
 
 ## Positioning
 
@@ -15,18 +19,6 @@ The site showcases selected work across:
 - product;
 - 2D/3D;
 - creative technology.
-
-## Status
-
-Planning / foundation.
-
-See:
-
-- `AGENTS.md`
-- `PRD.md`
-- `TASKS.md`
-- `CODEX_WORKFLOW.md`
-- `PROMPTS.md`
 
 ## Planned stack
 

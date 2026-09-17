@@ -1,24 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Alex">
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 128 128"
+  role="img"
+  aria-label="Alex Rafanomezantsoa"
+>
   <defs>
     <linearGradient id="rear" x1="23" y1="91" x2="95" y2="30" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#181818"/>
-      <stop offset="0.38" stop-color="#050505"/>
-      <stop offset="0.72" stop-color="#777"/>
-      <stop offset="1" stop-color="#242424"/>
+      <stop offset="0" stop-color="#181818" />
+      <stop offset="0.38" stop-color="#050505" />
+      <stop offset="0.72" stop-color="#777" />
+      <stop offset="1" stop-color="#242424" />
     </linearGradient>
     <linearGradient id="front" x1="25" y1="97" x2="110" y2="67" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#555"/>
-      <stop offset="0.34" stop-color="#171717"/>
-      <stop offset="0.63" stop-color="#8b8b8b"/>
-      <stop offset="1" stop-color="#202020"/>
+      <stop offset="0" stop-color="#555" />
+      <stop offset="0.34" stop-color="#171717" />
+      <stop offset="0.63" stop-color="#8b8b8b" />
+      <stop offset="1" stop-color="#202020" />
     </linearGradient>
     <linearGradient id="edge" x1="47" y1="79" x2="102" y2="59" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#333"/>
-      <stop offset="0.55" stop-color="#d2d2d2"/>
-      <stop offset="1" stop-color="#777"/>
+      <stop stop-color="#333" />
+      <stop offset="0.55" stop-color="#d2d2d2" />
+      <stop offset="1" stop-color="#777" />
     </linearGradient>
   </defs>
-  <path d="M24 89C33 72 42 50 52 34C61 19 72 15 81 26C88 35 96 53 105 75" fill="none" stroke="url(#rear)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M25 91C44 92 60 79 75 70C88 62 101 61 108 71C113 78 115 87 109 97" fill="none" stroke="url(#edge)" stroke-width="24" stroke-linecap="round"/>
-  <path d="M25 94C45 96 62 83 78 73C91 65 103 66 109 75C113 82 114 90 109 98" fill="none" stroke="url(#front)" stroke-width="20" stroke-linecap="round"/>
+  <path
+    d="M24 89C33 72 42 50 52 34C61 19 72 15 81 26C88 35 96 53 105 75"
+    fill="none"
+    stroke="url(#rear)"
+    stroke-width="22"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M25 91C44 92 60 79 75 70C88 62 101 61 108 71C113 78 115 87 109 97"
+    fill="none"
+    stroke="url(#edge)"
+    stroke-width="24"
+    stroke-linecap="round"
+  />
+  <path
+    d="M25 94C45 96 62 83 78 73C91 65 103 66 109 75C113 82 114 90 109 98"
+    fill="none"
+    stroke="url(#front)"
+    stroke-width="20"
+    stroke-linecap="round"
+  />
 </svg>

@@ -1,42 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../utils/paths';
+import { LinkButton } from '../components/ui/link-button';
 ---
 
 <BaseLayout
-  title="Page not found — Alex Mezan"
-  description="The requested page could not be found."
+  title="Page introuvable — Alex Rafanomezantsoa"
+  description="La page demandée est introuvable."
   noindex
 >
-  <section class="page-shell page-intro not-found" aria-labelledby="not-found-title">
-    <p class="error-code" aria-hidden="true">404</p>
-    <p class="eyebrow">Error</p>
-    <h1 id="not-found-title">Page not found.</h1>
-    <p><a href={withBase()}>Return home →</a></p>
-  </section>
+  <div class="container editorial-page editorial-grid">
+    <header class="editorial-heading">
+      <p class="eyebrow">Erreur 404</p><h1>Cette page<br />n’existe pas.</h1>
+    </header>
+    <div class="editorial-heading">
+      <p>
+        Le lien a peut-être changé ou la page a été retirée. Vous pouvez retrouver les projets ou
+        revenir à l’accueil.
+      </p>
+      <div class="page-actions">
+        <LinkButton href={withBase('work/')} variant="outline">Voir les projets</LinkButton>
+        <LinkButton href={withBase()} direction="left">Retour à l’accueil</LinkButton>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
-
-<style>
-  .not-found {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .error-code {
-    position: absolute;
-    right: var(--page-gutter);
-    bottom: 0;
-    margin: 0;
-    color: var(--color-border);
-    font-size: clamp(8rem, 28vw, 26rem);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: -0.08em;
-    line-height: 0.72;
-    pointer-events: none;
-  }
-
-  .not-found > :not(.error-code) {
-    position: relative;
-    z-index: 1;
-  }
-</style>

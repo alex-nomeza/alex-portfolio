@@ -1,5 +1,7 @@
 ---
 import { withBase } from '../../utils/paths';
+import { profile } from '../../data/profile';
+import { SocialLinks } from './SocialLinks';
 
 interface Props {
   pathname: string;
@@ -7,58 +9,168 @@ interface Props {
 
 const { pathname } = Astro.props;
 const navItems = [
-  { href: 'work/', label: 'Work' },
-  { href: 'about/', label: 'About' },
-  { href: 'lab/', label: 'Lab' },
-  { href: 'contact/', label: 'Contact' },
+  { label: 'Projets', route: 'work/' },
+  { label: 'À propos', route: 'about/' },
+  { label: 'CV', route: 'cv/' },
+  { label: 'Contact', route: 'contact/' },
 ];
 
-const isCurrent = (href: string) => {
-  const target = withBase(href);
-  return pathname === target || pathname.startsWith(target);
+const currentState = (route: string) => {
+  const target = withBase(route);
+  if (pathname === target) return 'page';
+  return pathname.startsWith(target) ? 'location' : undefined;
 };
 ---
 
-<header class="site-header">
-  <a class="site-name" href={withBase()} aria-label="Alex Mezan, home">
-    <img src={withBase('logo-a.svg')} alt="" width="44" height="44" />
-  </a>
-  <nav aria-label="Primary navigation">
-    <ul>
-      {
-        navItems.map(({ href, label }) => (
-          <li>
-            <a href={withBase(href)} aria-current={isCurrent(href) ? 'page' : undefined}>
-              {label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
+<header class="header-shell" data-scroll-header>
+  <div class="site-header">
+    <a class="site-name" href={withBase()} aria-label="Alex Rafanomezantsoa, accueil">
+      <span class="wordmark" aria-hidden="true"
+        ><span class="logo-first">A</span><span class="logo-middle">lex Rafanomezantso</span><span
+          class="logo-last">a</span
+        ></span
+      >
+    </a>
+    <div class="header-actions">
+      <nav aria-label="Navigation principale">
+        <ul>
+          {
+            navItems.map(({ label, route }) => (
+              <li>
+                <a href={withBase(route)} aria-current={currentState(route)}>
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <SocialLinks githubUrl={profile.githubUrl} linkedinUrl={profile.linkedinUrl} />
+    </div>
+  </div>
 </header>
+<div class="header-space" aria-hidden="true"></div>
+
+<script>
+  // Native scroll enhancement only; navigation remains usable without JavaScript.
+  const header = document.querySelector<HTMLElement>('[data-scroll-header]');
+  const first = header?.querySelector<HTMLElement>('.logo-first');
+  const middle = header?.querySelector<HTMLElement>('.logo-middle');
+
+  if (header && first && middle) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const scrollDistance = 180;
+    let travel = 0;
+    let frame = 0;
+    let previousProgress = -1;
+
+    const render = () => {
+      frame = 0;
+      const progress = reducedMotion.matches
+        ? 0
+        : Math.min(1, Math.max(0, window.scrollY / scrollDistance));
+      if (progress === previousProgress) return;
+      previousProgress = progress;
+      header.style.setProperty('--logo-shift', `${-travel * progress}px`);
+      header.style.setProperty('--logo-middle-opacity', `${Math.max(0, 1 - progress * 2)}`);
+      header.dataset.collapsed = String(progress === 1);
+    };
+
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(render);
+    };
+
+    const measure = () => {
+      travel = middle.getBoundingClientRect().width + first.getBoundingClientRect().width;
+      document.documentElement.style.setProperty(
+        '--header-height',
+        `${header.getBoundingClientRect().height}px`,
+      );
+      previousProgress = -1;
+      schedule();
+    };
+
+    const observer = new ResizeObserver(measure);
+    observer.observe(header);
+    observer.observe(middle);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('pageshow', measure);
+    reducedMotion.addEventListener('change', () => {
+      previousProgress = -1;
+      schedule();
+    });
+    void document.fonts.ready.then(measure);
+    measure();
+    header.dataset.enhanced = 'true';
+  }
+</script>
 
 <style>
+  .header-shell {
+    position: sticky;
+    inset: 0 0 auto;
+    z-index: 20;
+    background: var(--color-bg);
+  }
+  .header-shell[data-enhanced] {
+    position: fixed;
+  }
+  .header-space {
+    display: none;
+    height: var(--header-height);
+    flex-shrink: 0;
+  }
+  .header-shell[data-enhanced] + .header-space {
+    display: block;
+  }
   .site-header {
+    width: min(100%, var(--content-max));
+    margin-inline: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-6);
-    padding: var(--space-4) var(--page-gutter);
-    border-bottom: 1px solid var(--color-border);
+    padding: var(--header-padding-block) var(--page-gutter);
   }
 
   .site-name {
+    font-family: var(--font-logo);
     display: inline-flex;
     align-items: center;
+    min-height: var(--control-height);
+    min-width: 0;
     color: var(--color-text);
+    font-size: var(--font-size-logo);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: var(--tracking-heading);
+    line-height: var(--line-snug);
     text-decoration: none;
+    text-wrap: balance;
+    text-transform: uppercase;
   }
-
-  .site-name img {
-    display: block;
-    width: clamp(2rem, 3vw, 2.75rem);
-    height: auto;
+  .wordmark {
+    display: inline-flex;
+    white-space: pre;
+  }
+  .logo-middle {
+    opacity: var(--logo-middle-opacity, 1);
+  }
+  .logo-last {
+    transform: translateX(var(--logo-shift, 0px));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo-middle {
+      opacity: 1;
+    }
+    .logo-last {
+      transform: none;
+    }
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
   }
 
   ul {
@@ -75,7 +187,7 @@ const isCurrent = (href: string) => {
     position: relative;
     display: inline-flex;
     align-items: center;
-    min-height: 2.75rem;
+    min-height: var(--control-height);
     color: var(--color-text-muted);
     font-family: var(--font-meta);
     font-size: var(--font-size-nav);
@@ -88,7 +200,7 @@ const isCurrent = (href: string) => {
   nav a::after {
     position: absolute;
     right: 0;
-    bottom: -0.35rem;
+    bottom: var(--space-1);
     left: 0;
     height: 1px;
     background: currentColor;
@@ -99,27 +211,34 @@ const isCurrent = (href: string) => {
   }
 
   nav a:hover,
-  nav a[aria-current='page'] {
+  nav a[aria-current] {
     color: var(--color-text);
   }
 
   nav a:hover::after,
-  nav a[aria-current='page']::after {
+  nav a[aria-current]::after {
     transform: scaleX(1);
     transform-origin: left;
   }
 
-  @media (max-width: 36rem) {
+  @media (max-width: 56rem) {
     .site-header {
-      gap: var(--space-5);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
     }
 
     ul {
       gap: var(--space-3);
     }
+    .header-actions {
+      width: 100%;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
 
     nav a {
-      font-size: var(--font-size-meta);
+      font-size: var(--font-size-nav);
     }
   }
 </style>

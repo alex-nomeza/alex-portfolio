@@ -1,9 +1,13 @@
 ---
 import { Image } from 'astro:assets';
+import { LinkButton } from '../components/ui/link-button';
+import { withBase } from '../utils/paths';
 import BaseLayout from './BaseLayout.astro';
 import ProjectGallery from '../components/project/ProjectGallery.astro';
 import NextProject from '../components/project/NextProject.astro';
+import ZahirSlideshow from '../components/project/ZahirSlideshow.astro';
 import type { Project } from '../utils/projects';
+import SiteDemos from '../components/project/SiteDemos.astro';
 
 interface Props {
   project: Project;
@@ -13,7 +17,7 @@ interface Props {
 const { project, next } = Astro.props;
 const { data } = project;
 
-const title = data.seo?.title ?? data.title;
+const title = (data.seo?.title ?? data.title).replace(/ — Alex Rafanomezantsoa$/, '');
 const description = data.seo?.description ?? data.summary;
 
 interface MetaItem {
@@ -22,9 +26,8 @@ interface MetaItem {
 }
 
 const meta: MetaItem[] = [
-  { label: 'Year', value: String(data.year) },
   { label: 'Disciplines', value: data.disciplines.join(', ') },
-  { label: 'Role', value: data.role.join(', ') },
+  { label: 'Rôle', value: data.role.join(', ') },
 ];
 if (data.client) meta.push({ label: 'Client', value: data.client });
 if (data.technologies?.length) {
@@ -32,183 +35,164 @@ if (data.technologies?.length) {
 }
 
 const links = [
-  data.externalUrl ? { label: 'Visit', href: data.externalUrl } : null,
-  data.repositoryUrl ? { label: 'Repository', href: data.repositoryUrl } : null,
+  data.externalUrl ? { label: 'Voir le projet', href: data.externalUrl } : null,
+  data.repositoryUrl ? { label: 'Code source', href: data.repositoryUrl } : null,
 ].filter((link): link is { label: string; href: string } => link !== null);
 ---
 
-<BaseLayout title={`${title} — Alex Mezan`} description={description}>
+<BaseLayout title={`${title} — Alex Rafanomezantsoa`} description={description}>
   <article class="project container">
-    <header class="project-header">
-      <p class="eyebrow">Project · {data.year}</p>
-      <h1 class="project-title">{data.title}</h1>
-      {data.subtitle && <p class="project-subtitle">{data.subtitle}</p>}
+    <LinkButton direction="left" href={withBase('work/')}>Tous les projets</LinkButton>
+    <div
+      class:list={[
+        'project-opening editorial-grid',
+        { 'project-opening-showcase': project.id === 'le-zahir' },
+      ]}
+    >
+      <header class="project-header">
+        <p class="eyebrow">Projet · {data.year}</p>
+        <h1 class="project-title">{data.title}</h1>
+        {data.subtitle && <p class="project-subtitle">{data.subtitle}</p>}
 
-      <dl class="project-meta">
+        <dl class="project-meta">
+          {
+            meta.map((item) => (
+              <div>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
         {
-          meta.map((item) => (
-            <div>
-              <dt>{item.label}</dt>
-              <dd>{item.value}</dd>
-            </div>
-          ))
+          links.length > 0 && (
+            <p class="project-links">
+              {links.map((link) => (
+                <LinkButton
+                  direction="external"
+                  href={link.href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {link.label}
+                </LinkButton>
+              ))}
+            </p>
+          )
         }
-      </dl>
+      </header>
 
       {
-        links.length > 0 && (
-          <p class="project-links">
-            {links.map((link) => (
-              <a
-                class="link-arrow"
-                data-dir="right"
-                href={link.href}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {link.label}
-              </a>
-            ))}
-          </p>
+        project.id !== 'le-zahir' && (
+          <Image
+            class="project-cover"
+            src={data.cover}
+            alt={data.coverAlt}
+            widths={[768, 1200, 1600, 2000]}
+            sizes="(min-width: 56rem) 50vw, 100vw"
+            loading="eager"
+          />
         )
       }
-    </header>
-
-    <Image
-      class="project-cover"
-      src={data.cover}
-      alt={data.coverAlt}
-      widths={[768, 1200, 1600, 2000]}
-      sizes="(min-width: 90rem) 90rem, 100vw"
-      loading="eager"
-    />
-
-    <div class="prose project-body">
+    </div>
+    {project.id === 'le-zahir' && <ZahirSlideshow src={data.cover} alt={data.coverAlt} />}
+    <div class="project-body editorial-reading">
       <slot />
+      {project.id === 'web-digital-selection' && <SiteDemos />}
     </div>
 
     {data.gallery && <ProjectGallery items={data.gallery} />}
 
     {next && <NextProject project={next} />}
+    <footer class="project-footer page-actions">
+      <LinkButton href={withBase('work/')} direction="left">Tous les projets</LinkButton>
+      <LinkButton href={withBase('contact/')}>Discuter d’un projet</LinkButton>
+    </footer>
   </article>
 </BaseLayout>
 
 <style>
   .project {
-    padding-block: var(--section-space);
+    padding-block: var(--space-5) var(--section-space);
   }
-
+  .project-opening {
+    margin-top: var(--space-6);
+    align-items: start;
+  }
   .project-header {
     display: grid;
-    gap: var(--space-6);
-    min-height: min(66vh, 46rem);
-    align-content: center;
+    gap: var(--space-5);
   }
-
+  .project-opening-showcase {
+    display: block;
+  }
+  @media (min-width: 56rem) {
+    .project-opening-showcase .project-header {
+      grid-template-columns: var(--editorial-left) var(--editorial-right);
+      column-gap: var(--editorial-gap);
+    }
+    .project-opening-showcase .project-header > :not(.project-meta) {
+      grid-column: 1;
+    }
+    .project-opening-showcase .project-meta {
+      grid-column: 2;
+      grid-row: 1 / 4;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+  }
   .project-title {
-    max-width: 18ch;
-    margin: 0;
-    font-size: var(--font-size-h1);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--tracking-tight);
-    line-height: var(--line-tight);
-    text-wrap: balance;
+    font-size: var(--font-size-hero);
+    line-height: var(--line-snug);
+    max-width: 16ch;
   }
-
   .project-subtitle {
-    max-width: 42ch;
-    margin: 0;
+    max-width: 38ch;
     color: var(--color-text-muted);
+    margin: 0;
     font-size: var(--font-size-body-lg);
-    text-wrap: pretty;
   }
-
   .project-meta {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
     gap: var(--space-5);
-    margin: 0;
-    padding-top: var(--space-6);
+    margin: var(--space-5) 0 0;
+    padding-top: var(--space-5);
     border-top: 1px solid var(--color-border);
   }
-
   .project-meta dt {
-    color: var(--color-text-muted);
-    font-family: var(--font-meta);
     font-size: var(--font-size-meta);
-    letter-spacing: var(--tracking-meta);
-    text-transform: uppercase;
+    color: var(--color-text-muted);
   }
-
   .project-meta dd {
     margin: var(--space-2) 0 0;
+    font-size: var(--font-size-nav);
   }
-
   .project-links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-4) var(--space-6);
-    margin: 0;
+    gap: var(--space-4);
   }
-
   .project-cover {
     display: block;
     width: 100%;
     height: auto;
-    margin-top: var(--space-8);
   }
-
   .project-body {
-    display: grid;
-    gap: var(--space-5) var(--page-gutter);
-    max-width: none;
     margin-top: var(--section-space);
   }
-
-  .project-body :global(h2) {
-    margin: 0;
-    font-size: var(--font-size-h3);
-    line-height: var(--line-snug);
+  .project-footer {
+    margin-top: var(--space-7);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+    justify-content: space-between;
   }
-
-  .project-body :global(p),
-  .project-body :global(ul) {
-    max-width: 62ch;
-    margin: 0;
-    text-wrap: pretty;
-  }
-
-  .project-body:empty {
-    margin-top: 0;
-  }
-
   @media (min-width: 56rem) {
-    .project-header {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: var(--page-gutter);
-    }
-
-    .project-header > .eyebrow,
-    .project-title {
-      grid-column: 1 / 9;
-    }
-
-    .project-subtitle {
-      grid-column: 8 / 13;
-    }
-
-    .project-meta,
-    .project-links {
-      grid-column: 1 / -1;
-    }
-
-    .project-body :global(h2) {
-      grid-column: 1 / 5;
-    }
-
-    .project-body :global(p),
-    .project-body :global(ul) {
-      grid-column: 5 / 11;
+    .project-body {
+      margin-left: auto;
+      max-width: none;
+      width: calc((100% - var(--editorial-gap)) * 0.55);
     }
   }
 </style>

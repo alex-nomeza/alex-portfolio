@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Latitude, concept d’agence de voyage : séjours filtrables et comparateur de destinations."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Latitude — À chacun son ailleurs</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    <div class="demo">Démonstration · Agence, offres et tarifs fictifs · Aucun voyage vendu</div>
+    <header class="wrap">
+      <a class="brand" href="./index.html">latitude<span>LE GOÛT DE L’AILLEURS</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#voyages">Les voyages</a><a href="#comparateur">Comparer</a
+        ><a href="#approche">Notre approche</a>
+      </nav>
+    </header>
+    <main id="contenu">
+      <section class="wrap hero">
+        <p class="eyebrow">Carnet d’inspirations / Agence de voyage fictive</p>
+        <h1>Votre prochaine<br /><em>parenthèse.</em></h1>
+        <div class="hero-bottom">
+          <p>
+            Une ville à parcourir, un paysage à contempler, un rythme à changer. Quatre idées de
+            voyage, et la liberté de les comparer.
+          </p>
+          <a class="button" href="#voyages">Trouver mon ailleurs ↓</a>
+        </div>
+      </section>
+      <section class="wrap section" id="voyages">
+        <div class="section-heading">
+          <h2>Où vous emmène<br />votre curiosité ?</h2>
+          <p>
+            Prix indicatifs par personne, hors vols.<br />Tous les programmes sont des exemples.
+          </p>
+        </div>
+        <form id="filters" hidden>
+          <label
+            >Région<select id="region">
+              <option value="all">Toutes les régions</option>
+              <option value="europe">Europe</option>
+              <option value="afrique">Afrique</option>
+              <option value="asie">Asie</option>
+            </select></label
+          ><label
+            >Budget maximum par personne<select id="budget">
+              <option value="all">Tous les budgets</option>
+              <option value="800">800 €</option>
+              <option value="1500">1 500 €</option>
+              <option value="2500">2 500 €</option>
+            </select></label
+          ><button type="reset">Réinitialiser</button>
+        </form>
+        <p id="filter-result" class="muted" role="status"></p>
+        <div class="trips">
+          <article
+            data-id="portugal"
+            data-region="europe"
+            data-price="690"
+            data-days="5"
+            data-name="Portugal — Escale à Lisbonne"
+            data-included="4 nuits, petit-déjeuner, promenade guidée"
+          >
+            <div class="poster lisbonne" aria-hidden="true">
+              <span>01 / EUROPE</span><strong>Lis<br /><em>bonne.</em></strong
+              ><span>Une ville, mille détours.</span>
+            </div>
+            <h3>Portugal — Escale à Lisbonne</h3>
+            <p>5 jours · Ville & culture</p>
+            <p class="muted">
+              4 nuits, petit-déjeuner, promenade guidée. Vols et autres repas non inclus.
+            </p>
+            <div class="offer">
+              <span>690 € / pers.</span
+              ><button class="compare" type="button" aria-pressed="false" disabled>
+                Comparer<span class="sr-only"> : Portugal</span>
+              </button>
+            </div>
+          </article>
+          <article
+            data-id="maroc"
+            data-region="afrique"
+            data-price="980"
+            data-days="7"
+            data-name="Maroc — Jardins & médinas"
+            data-included="6 nuits, petits-déjeuners, transferts du programme"
+          >
+            <div class="poster maroc" aria-hidden="true">
+              <span>02 / AFRIQUE</span><strong>Jardins<br /><em>& médinas.</em></strong
+              ><span>Au fil des passages.</span>
+            </div>
+            <h3>Maroc — Jardins & médinas</h3>
+            <p>7 jours · Culture & découverte</p>
+            <p class="muted">
+              6 nuits, petits-déjeuners, transferts du programme. Vols et autres repas non inclus.
+            </p>
+            <div class="offer">
+              <span>980 € / pers.</span
+              ><button class="compare" type="button" aria-pressed="false" disabled>
+                Comparer<span class="sr-only"> : Maroc</span>
+              </button>
+            </div>
+          </article>
+          <article
+            data-id="japon"
+            data-region="asie"
+            data-price="2250"
+            data-days="12"
+            data-name="Japon — Villes & chemins"
+            data-included="11 nuits, petits-déjeuners, trajets du programme"
+          >
+            <div class="poster japon" aria-hidden="true">
+              <span>03 / ASIE</span><strong>Villes<br /><em>& chemins.</em></strong
+              ><span>Un autre regard.</span>
+            </div>
+            <h3>Japon — Villes & chemins</h3>
+            <p>12 jours · Culture & paysages</p>
+            <p class="muted">
+              11 nuits, petits-déjeuners, trajets du programme. Vols et autres repas non inclus.
+            </p>
+            <div class="offer">
+              <span>2 250 € / pers.</span
+              ><button class="compare" type="button" aria-pressed="false" disabled>
+                Comparer<span class="sr-only"> : Japon</span>
+              </button>
+            </div>
+          </article>
+          <article
+            data-id="madagascar"
+            data-region="afrique"
+            data-price="1450"
+            data-days="10"
+            data-name="Madagascar — Entre terre & îles"
+            data-included="9 nuits, petits-déjeuners, transferts du programme"
+          >
+            <div class="poster mada" aria-hidden="true">
+              <span>04 / AFRIQUE</span><strong>Terre<br /><em>& îles.</em></strong
+              ><span>Prendre le temps du voyage.</span>
+            </div>
+            <h3>Madagascar — Entre terre & îles</h3>
+            <p>10 jours · Nature & détente</p>
+            <p class="muted">
+              9 nuits, petits-déjeuners, transferts du programme. Vols et autres repas non inclus.
+            </p>
+            <div class="offer">
+              <span>1 450 € / pers.</span
+              ><button class="compare" type="button" aria-pressed="false" disabled>
+                Comparer<span class="sr-only"> : Madagascar</span>
+              </button>
+            </div>
+          </article>
+        </div>
+        <p id="empty" hidden>
+          Aucun séjour ne correspond à ces critères. Augmentez le budget ou choisissez une autre
+          région.
+        </p>
+        <noscript>Activez JavaScript pour filtrer et comparer les séjours.</noscript>
+      </section>
+      <section id="comparateur" class="wrap section">
+        <p class="eyebrow">Votre sélection</p>
+        <h2>Deux envies,<br /><em>un choix plus clair.</em></h2>
+        <p id="compare-status" role="status">
+          Choisissez jusqu’à deux séjours avec le bouton « Comparer ».
+        </p>
+        <div id="comparison" class="comparison"></div>
+        <button id="clear" type="button" hidden>Effacer la sélection</button>
+      </section>
+      <section class="story" id="approche">
+        <div class="wrap split">
+          <p class="eyebrow">L’esprit Latitude</p>
+          <div>
+            <h2>Partir commence<br />par une conversation.</h2>
+            <p>
+              Ce concept d’agence donne une place claire au budget, à la durée et aux prestations.
+              Le comparateur permet de rapprocher deux envies avant de construire un projet de
+              voyage.
+            </p>
+            <p class="muted">
+              Aucun itinéraire n’est commercialisé. Les destinations réelles servent uniquement de
+              cadre aux offres fictives.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="wrap">
+      <span class="brand">latitude</span>
+      <p>Concept d’agence · HTML, CSS & JavaScript</p>
+      <a href="../tours/index.html">Découvrir la démo de circuit ↗</a>
+    </footer>
+  </body>
+</html>

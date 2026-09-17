@@ -1,0 +1,64 @@
+---
+import { siteDemos } from '../../data/site-demos';
+import { LinkButton } from '../ui/link-button';
+import { withBase } from '../../utils/paths';
+---
+
+<section class="site-demos" aria-labelledby="site-demos-title">
+  <p class="eyebrow">HTML · CSS · JavaScript</p>
+  <h2 id="site-demos-title">Des sites à explorer.</h2>
+  <p class="intro">
+    {siteDemos.length} démonstrations interactives. Les enseignes, produits et données sont fictifs.
+  </p>
+  <ul>
+    {
+      siteDemos.map((demo) => (
+        <li>
+          <p class="eyebrow">{demo.category}</p>
+          <h3>{demo.name}</h3>
+          <p>{demo.description}</p>
+          <LinkButton
+            href={withBase(`sites/${demo.id}/index.html`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            direction="external"
+            aria-label={`Visiter le site ${demo.name} (nouvel onglet)`}
+          >
+            Visiter le site
+          </LinkButton>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .site-demos {
+    margin-block: var(--space-8);
+  }
+  h2 {
+    font-size: var(--font-size-h2);
+    margin-top: var(--space-3);
+  }
+  .intro {
+    color: var(--color-text-muted);
+    max-width: var(--text-max);
+  }
+  ul {
+    padding: 0;
+    list-style: none;
+    margin: var(--space-6) 0 0;
+  }
+  li {
+    border-top: 1px solid var(--color-border);
+    padding-block: var(--space-6);
+  }
+  h3 {
+    font-size: var(--font-size-body-lg);
+    margin-top: var(--space-3);
+  }
+  li > p:not(.eyebrow) {
+    color: var(--color-text-muted);
+    max-width: 55ch;
+  }
+</style>

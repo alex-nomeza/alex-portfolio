@@ -7,7 +7,6 @@
 .page-intro {
   display: grid;
   gap: var(--space-5);
-  min-height: min(58vh, 40rem);
   align-content: center;
   padding-block: var(--space-8);
 }
@@ -45,16 +44,9 @@
   }
 
   .page-intro .lede {
-    grid-column: 8 / 13;
+    grid-column: 1 / 9;
     align-self: end;
   }
-}
-
-.empty-state {
-  margin-top: var(--space-8);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-muted);
 }
 
 .prose {
@@ -68,6 +60,8 @@
 /* Horizontal page container without vertical section padding. */
 .container {
   width: min(100%, var(--content-max));
+  /* Override Tailwind's breakpoint widths to match the header and homepage. */
+  max-width: var(--content-max);
   margin-inline: auto;
   padding-inline: var(--page-gutter);
 }
@@ -93,118 +87,84 @@
   font-size: var(--font-size-h2);
 }
 
-/* Typographic CTA with a directional arrow. */
-.link-arrow,
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
-  color: var(--color-text);
-  font-family: var(--font-meta);
-  font-size: var(--font-size-meta);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--tracking-meta);
-  line-height: 1;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition:
-    background-color var(--duration-fast) var(--ease-out),
-    color var(--duration-fast) var(--ease-out),
-    border-color var(--duration-fast) var(--ease-out),
-    transform var(--duration-fast) var(--ease-out);
+.editorial-grid {
+  display: grid;
+  gap: var(--space-8) var(--editorial-gap);
+  align-items: start;
 }
-
-.link-arrow {
-  align-items: baseline;
+.editorial-grid > * {
+  min-width: 0;
 }
-
-.link-arrow::after {
-  content: '\2197'; /* ↗ */
-  transition:
-    transform var(--duration-fast) var(--ease-out),
-    opacity var(--duration-fast) var(--ease-out);
+.editorial-stack {
+  display: grid;
+  gap: var(--space-7);
 }
-
-.link-arrow[data-dir='down']::after {
-  content: '\2193'; /* ↓ */
+.editorial-stack > * + * {
+  padding-top: var(--space-7);
+  border-top: 1px solid var(--color-border);
 }
-
-.link-arrow[data-dir='right']::after {
-  content: '\2192'; /* → */
+.editorial-section {
+  display: grid;
+  gap: var(--space-5);
 }
-
-.link-arrow:hover {
-  text-decoration: underline;
-  text-underline-offset: 0.3em;
+.editorial-section h2 {
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-snug);
 }
-
-.link-arrow:hover::after {
-  transform: translate(0.15em, -0.15em);
+.editorial-section p {
+  margin: 0;
+  max-width: var(--text-max);
+  color: var(--color-text-muted);
 }
-
-.link-arrow[data-dir='down']:hover::after {
-  transform: translateY(0.15em);
+.page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
 }
-
-.link-arrow[data-dir='right']:hover::after {
-  transform: translateX(0.2em);
+.editorial-page {
+  padding-block: var(--section-space);
 }
-
-/* Rectangular CTA variants for moments that need more emphasis than a text link. */
-.button {
-  min-height: var(--control-height);
-  padding: 0 var(--control-padding-inline);
-  border: var(--control-border);
-  border-radius: 0;
-  background: transparent;
-  cursor: pointer;
-  font-size: var(--font-size-control);
+.editorial-heading {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
 }
-
-.button::after {
-  content: '\2192';
-  transition: transform var(--duration-fast) var(--ease-out);
+.editorial-heading h1 {
+  max-width: 18ch;
+  font-size: var(--font-size-hero);
+  line-height: var(--line-snug);
 }
-
-.button[data-dir='down']::after {
-  content: '\2193';
+.editorial-heading p {
+  max-width: 38ch;
+  margin: 0;
+  color: var(--color-text-muted);
 }
-
-.button:hover::after {
-  transform: translateX(0.2em);
+.editorial-reading {
+  max-width: 65ch;
 }
-
-.button[data-dir='down']:hover::after {
-  transform: translateY(0.15em);
+.editorial-reading :is(h2, h3) {
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-snug);
+  margin: var(--space-7) 0 var(--space-4);
 }
-
-.button--solid {
-  background: var(--color-text);
-  color: var(--color-bg);
+.editorial-reading > :first-child {
+  margin-top: 0;
 }
-
-.button--solid:hover {
-  background: var(--color-text-muted);
-  border-color: var(--color-text-muted);
+.editorial-reading p {
+  margin: 0 0 var(--space-5);
+  color: var(--color-text-muted);
+  line-height: 1.75;
 }
-
-.button--outline:hover {
-  background: var(--color-text);
-  color: var(--color-bg);
+.editorial-reading :is(ul, ol) {
+  padding-left: var(--space-5);
+  color: var(--color-text-muted);
+  line-height: 1.75;
 }
-
-.button--inverse {
-  border-color: var(--color-inverse-text);
-  background: var(--color-inverse-text);
-  color: var(--color-inverse-bg);
+.editorial-reading li + li {
+  margin-top: var(--space-2);
 }
-
-.button--inverse:hover {
-  background: transparent;
-  color: var(--color-inverse-text);
-}
-
-.button:active {
-  transform: translateY(1px);
+@media (min-width: 56rem) {
+  .editorial-grid {
+    grid-template-columns: var(--editorial-left) var(--editorial-right);
+  }
 }

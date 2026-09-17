@@ -1,217 +1,49 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const capabilities = [
-  {
-    title: 'Direction & identity',
-    items: ['Art direction', 'Brand identity', 'Graphic design', 'Digital communication'],
-  },
-  {
-    title: 'Editorial & image',
-    items: ['Editorial design', 'Visual systems', '2D / 3D visualization', 'AI-assisted workflows'],
-  },
-  {
-    title: 'Digital products',
-    items: ['Web design', 'Product design', 'Frontend development', 'Creative technology'],
-  },
-];
+import ContactCTA from '../components/home/ContactCTA.astro';
+import { introduction, practice } from '../data/home';
+import { LinkButton } from '../components/ui/link-button';
+import { withBase } from '../utils/paths';
 ---
 
 <BaseLayout
-  title="About — Alex Mezan"
-  description="Alex Mezan is a multidisciplinary designer and developer based in Nosy Be, Madagascar, working across identity, editorial, digital products and visual systems."
+  title="À propos — Alex Rafanomezantsoa"
+  description="Alex Rafanomezantsoa, designer et développeur pluridisciplinaire à Nosy Be, Madagascar."
 >
-  <article class="about container" aria-labelledby="about-title">
-    <header class="about-intro">
-      <p class="eyebrow">Profile · Nosy Be, Madagascar</p>
-      <h1 id="about-title">Designing across disciplines, building with intent.</h1>
-      <p class="about-lede">
-        Alex Mezan is a multidisciplinary designer and developer working at the intersection of
-        visual culture, digital products and creative technology.
-      </p>
+  <div class="container editorial-page editorial-grid">
+    <header class="editorial-heading">
+      <p class="eyebrow">À propos · {introduction.location}</p>
+      <h1>Entre design<br />et développement.</h1>
+      <p>{introduction.role}</p>
     </header>
-
-    <section class="about-story" aria-labelledby="practice-title">
-      <p class="eyebrow">Practice</p>
-      <div class="about-copy">
-        <h2 id="practice-title">From visual idea to working system.</h2>
+    <div class="editorial-stack">
+      <section class="editorial-section" aria-labelledby="about-practice">
+        <h2 id="about-practice">Une pratique pluridisciplinaire</h2>
+        <p>{introduction.bio}</p>
+        <ul class="practice-list">
+          {practice.map((item) => <li>{item}</li>)}
+        </ul>
+        <LinkButton href={withBase('work/')}>Découvrir les projets</LinkButton>
+        <LinkButton href={withBase('cv/')}>Consulter mon CV</LinkButton>
+      </section>
+      <section class="editorial-section" aria-labelledby="about-experiments">
+        <h2 id="about-experiments">Un espace pour explorer</h2>
         <p>
-          The practice moves between art direction, identity, editorial design, web and product
-          development. Each project is approached as a connected system: how it looks, how it reads,
-          how it behaves and how it can be maintained.
+          Le laboratoire rassemble mes recherches visuelles et techniques : création d’images avec
+          l’IA, outils pour tableurs, traitement du malgache et construction de ce portfolio.
         </p>
-        <p>
-          Based in Nosy Be, Madagascar, Alex works across print and screen, combining typographic
-          precision with practical implementation. The aim is straightforward: make the idea clear,
-          give it a distinct visual language and carry that language consistently into the final
-          experience.
-        </p>
-      </div>
-    </section>
-
-    <section class="about-capabilities" aria-labelledby="capabilities-title">
-      <div class="section-head">
-        <h2 id="capabilities-title">Capabilities</h2>
-        <p>Strategy, form and implementation.</p>
-      </div>
-      <div class="capability-groups">
-        {
-          capabilities.map((group, index) => (
-            <section aria-labelledby={`capability-${index}`}>
-              <p class="capability-number">{String(index + 1).padStart(2, '0')}</p>
-              <h3 id={`capability-${index}`}>{group.title}</h3>
-              <ul>
-                {group.items.map((item) => (
-                  <li>{item}</li>
-                ))}
-              </ul>
-            </section>
-          ))
-        }
-      </div>
-    </section>
-
-    <section class="about-principles" aria-labelledby="principles-title">
-      <p class="eyebrow">Approach</p>
-      <div>
-        <h2 id="principles-title">Clarity before decoration.</h2>
-        <p>
-          Strong hierarchy, deliberate typography and useful interaction come first. Technology
-          supports the concept; it does not compete with it. The result should feel precise,
-          accessible and appropriate to its context.
-        </p>
-      </div>
-    </section>
-  </article>
+        <LinkButton href={withBase('lab/')}>Parcourir le laboratoire</LinkButton>
+      </section>
+      <ContactCTA />
+    </div>
+  </div>
 </BaseLayout>
-
 <style>
-  .about {
-    padding-block: var(--section-space);
-  }
-
-  .about-intro {
+  .practice-list {
     display: grid;
-    gap: var(--space-6);
-    min-height: min(72vh, 48rem);
-    align-content: center;
-  }
-
-  .about-intro h1 {
-    max-width: 17ch;
-  }
-
-  .about-lede {
-    max-width: 42ch;
+    gap: var(--space-4);
     margin: 0;
+    padding-left: var(--space-5);
     color: var(--color-text-muted);
-    font-size: var(--font-size-body-lg);
-    text-wrap: pretty;
-  }
-
-  .about-story,
-  .about-principles {
-    display: grid;
-    gap: var(--space-6) var(--page-gutter);
-    padding-block: var(--section-space);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .about-copy,
-  .about-principles > div {
-    max-width: var(--text-max);
-  }
-
-  .about-copy h2,
-  .about-principles h2 {
-    margin-bottom: var(--space-6);
-    font-size: var(--font-size-h3);
-    line-height: var(--line-snug);
-  }
-
-  .about-copy p,
-  .about-principles p {
-    margin: 0;
-    font-size: var(--font-size-body-lg);
-    text-wrap: pretty;
-  }
-
-  .about-copy p + p {
-    margin-top: var(--space-5);
-    color: var(--color-text-muted);
-  }
-
-  .about-capabilities {
-    padding-block: var(--section-space);
-  }
-
-  .section-head p {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-    text-transform: uppercase;
-  }
-
-  .capability-groups {
-    display: grid;
-    gap: var(--space-8) var(--page-gutter);
-    padding-top: var(--space-8);
-  }
-
-  .capability-groups section {
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .capability-number {
-    margin: 0 0 var(--space-5);
-    color: var(--color-text-muted);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-  }
-
-  .capability-groups h3 {
-    margin: 0;
-    font-size: var(--font-size-body-lg);
-    font-weight: var(--font-weight-medium);
-  }
-
-  .capability-groups ul {
-    display: grid;
-    gap: var(--space-2);
-    margin: var(--space-5) 0 0;
-    padding: 0;
-    color: var(--color-text-muted);
-    list-style: none;
-  }
-
-  @media (min-width: 48rem) {
-    .about-intro {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: var(--page-gutter);
-    }
-
-    .about-intro .eyebrow {
-      grid-column: 1 / 5;
-      align-self: start;
-    }
-
-    .about-intro h1 {
-      grid-column: 1 / 10;
-    }
-
-    .about-lede {
-      grid-column: 8 / 13;
-    }
-
-    .about-story,
-    .about-principles {
-      grid-template-columns: minmax(10rem, 0.6fr) minmax(0, 1.4fr);
-    }
-
-    .capability-groups {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
   }
 </style>

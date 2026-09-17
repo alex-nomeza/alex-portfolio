@@ -1,50 +1,31 @@
 ---
-import { withBase } from '../../utils/paths';
+import { profile } from '../../data/profile';
+import { LinkButton } from '../ui/link-button';
 ---
 
-<section class="contact-cta" aria-labelledby="contact-cta-title">
-  <div class="container contact-cta-inner">
-    <p class="eyebrow contact-cta-eyebrow">Contact</p>
-    <h2 id="contact-cta-title">Have a project in mind? Let’s talk.</h2>
-    <p class="contact-cta-actions">
-      <a class="button button--inverse contact-cta-link" href={withBase('contact/')}>
-        Start a conversation
-      </a>
-    </p>
-  </div>
+<section id="contact" class="contact-cta" aria-labelledby="contact-heading">
+  <h2 id="contact-heading">Un projet, une collaboration ?</h2>
+  <a class="email" href={`mailto:${profile.email}`}>{profile.email}</a>
+  <LinkButton href={profile.githubUrl} direction="external">GitHub</LinkButton>
 </section>
-
 <style>
   .contact-cta {
-    background: var(--color-inverse-bg);
-    color: var(--color-inverse-text);
-  }
-
-  .contact-cta-inner {
     display: grid;
-    gap: var(--space-6);
-    padding-block: var(--section-space);
+    gap: var(--space-5);
+    align-content: start;
   }
-
-  .contact-cta-eyebrow {
-    color: var(--color-border);
+  h2 {
+    font-size: var(--font-size-nav);
+    line-height: var(--line-body);
+    letter-spacing: 0;
+    font-weight: var(--font-weight-semibold);
   }
-
-  .contact-cta h2 {
-    max-width: 18ch;
-    font-size: var(--font-size-h1);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--tracking-tight);
-    line-height: var(--line-tight);
-    text-wrap: balance;
-  }
-
-  .contact-cta-actions {
-    margin: var(--space-2) 0 0;
-  }
-
-  /* Focus ring must stay visible against the dark section. */
-  .contact-cta :focus-visible {
-    outline-color: var(--color-inverse-text);
+  .email {
+    width: fit-content;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: var(--font-size-body-lg);
+    line-height: var(--line-body);
+    text-decoration-thickness: 1px;
   }
 </style>

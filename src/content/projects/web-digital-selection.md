@@ -1,53 +1,30 @@
 ---
-title: 'Web & Digital selection'
-subtitle: 'Selected responsive experiences where hierarchy meets implementation.'
-summary: 'A selection of websites and digital experiences shaped around clear hierarchy, responsive behavior and focused interaction.'
+title: 'Web et numérique'
+subtitle: 'Une sélection d’expériences adaptatives, de la hiérarchie visuelle à la réalisation.'
+summary: 'Des concepts de sites et d’interfaces explorant la structure du contenu, la navigation et l’adaptation aux écrans.'
 year: 2026
 order: 30
 status: 'published'
 featured: true
 disciplines:
-  - 'Web Design'
-  - 'UI/UX'
-  - 'Frontend Development'
+  - 'Design web'
+  - 'Interface et expérience utilisateur'
+  - 'Développement frontend'
 role:
-  - 'Creative Direction'
-  - 'UI/UX Design'
-  - 'Frontend Development'
+  - 'Direction créative'
+  - 'Design d’interface et d’expérience utilisateur'
+  - 'Développement frontend'
 cover: '../../assets/images/projects/web-digital-selection-generated.png'
-coverAlt: 'Responsive screens and printed interface studies arranged in a precise blue, black and white system.'
+coverAlt: 'Écrans adaptatifs et études d’interfaces imprimées, organisés dans un ensemble bleu, noir et blanc.'
 seo:
-  title: 'Web & Digital Selection — Alex Mezan'
-  description: 'Selected web and interface concept work by Alex Mezan, spanning responsive design, interaction and frontend implementation.'
+  title: 'Web et numérique'
+  description: 'Des concepts de sites et d’interfaces explorant la structure du contenu, la navigation et l’adaptation aux écrans. Par Alex Rafanomezantsoa.'
 ---
 
-## Overview
+## Plusieurs contextes, une même question
 
-This selection brings together concept work across portfolio sites, editorial
-platforms, hospitality experiences and product interfaces. The subjects change,
-but the objective remains consistent: turn complex content into a clear,
-responsive and distinctive digital experience.
+Cette sélection réunit des concepts de portfolios, de plateformes éditoriales, de sites hôteliers et d’interfaces produit. L’objectif commun est de transformer un contenu complexe en une expérience numérique claire, adaptative et singulière.
 
-## Principles
+## Partir du contenu
 
-Each project begins with content structure rather than surface styling. Page
-hierarchy, navigation and responsive behavior are defined before visual details
-are introduced. Typography and spacing then establish character without hiding
-the purpose of the interface.
-
-The systems are designed across mobile, tablet and desktop from the beginning.
-Layouts adapt through fluid type, flexible grids and purposeful changes in
-composition instead of simply compressing a desktop page.
-
-## Design to code
-
-Implementation is treated as part of the design process. Semantic markup,
-accessible interaction, restrained motion and image performance influence the
-final experience. Components are reused where they create consistency, while
-page-specific composition is preserved when the content calls for it.
-
-## Contribution
-
-The work spans creative direction, information architecture, UI/UX, responsive
-design and frontend development. Together, the studies demonstrate an approach
-in which visual precision and technical decisions support the same idea.
+Chaque projet commence par la structure du contenu. La hiérarchie des pages, la navigation et l’adaptation aux écrans sont définies avant les détails visuels. La typographie et les espacements apportent ensuite du caractère sans masquer la fonction de l’interface.

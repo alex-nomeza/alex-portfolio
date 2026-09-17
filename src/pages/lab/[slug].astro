@@ -1,7 +1,10 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { labStatusLabels } from '../../data/labels';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { withBase } from '../../utils/paths';
+import { LinkButton } from '../../components/ui/link-button';
+import { Badge } from '../../components/ui/badge';
 
 export async function getStaticPaths() {
   const entries = await getCollection('lab', ({ data }) => !data.draft);
@@ -20,152 +23,90 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 
 const links = [
-  entry.data.url ? { label: 'Visit project', href: entry.data.url } : null,
-  entry.data.repositoryUrl ? { label: 'View repository', href: entry.data.repositoryUrl } : null,
+  entry.data.url ? { label: 'Voir le projet', href: entry.data.url } : null,
+  entry.data.repositoryUrl
+    ? { label: 'Voir le code source', href: entry.data.repositoryUrl }
+    : null,
 ].filter((link): link is { label: string; href: string } => link !== null);
 ---
 
-<BaseLayout title={`${entry.data.title} — Lab — Alex Mezan`} description={entry.data.summary}>
-  <article class="lab-detail container">
-    <header class="lab-detail-header">
-      <p class="eyebrow">Lab · {entry.data.status} · {entry.data.year}</p>
-      <h1>{entry.data.title}</h1>
-      <p class="lab-detail-summary">{entry.data.summary}</p>
+<BaseLayout
+  title={`${entry.data.title} — Laboratoire — Alex Rafanomezantsoa`}
+  description={entry.data.summary}
+>
+  <article class="lab-detail container editorial-page">
+    <LinkButton direction="left" href={withBase('lab/')}>Laboratoire</LinkButton>
+    <div class="editorial-grid lab-opening">
+      <header class="lab-detail-header editorial-heading">
+        <p class="eyebrow">Laboratoire · {entry.data.year}</p>
+        <h1>{entry.data.title}</h1>
+        <p class="lab-detail-summary">{entry.data.summary}</p>
+        <dl class="lab-detail-meta">
+          <div>
+            <dt>État de l’exploration</dt><dd>
+              <Badge variant="outline">{labStatusLabels[entry.data.status]}</Badge>
+            </dd>
+          </div>
+          <div><dt>Thèmes</dt><dd>{entry.data.tags.join(' · ')}</dd></div>
+        </dl>
 
-      <ul class="lab-detail-tags" aria-label={`${entry.data.title} tags`}>
-        {entry.data.tags.map((tag) => <li>{tag}</li>)}
-      </ul>
+        {
+          links.length > 0 && (
+            <p class="lab-detail-links">
+              {links.map((link) => (
+                <LinkButton
+                  direction="external"
+                  href={link.href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {link.label}
+                </LinkButton>
+              ))}
+            </p>
+          )
+        }
+      </header>
 
-      {
-        links.length > 0 && (
-          <p class="lab-detail-links">
-            {links.map((link) => (
-              <a
-                class="link-arrow"
-                data-dir="right"
-                href={link.href}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {link.label}
-              </a>
-            ))}
-          </p>
-        )
-      }
-    </header>
-
-    <div class="lab-detail-body prose">
-      <Content />
+      <div class="lab-detail-body editorial-reading">
+        <Content />
+      </div>
     </div>
-
-    <footer class="lab-detail-footer">
-      <a class="link-arrow" data-dir="right" href={withBase('lab/')}>Back to Lab</a>
+    <footer class="lab-detail-footer page-actions">
+      <LinkButton href={withBase('lab/')} direction="left">Retour au laboratoire</LinkButton>
+      <LinkButton href={withBase('contact/')}>Échanger sur cette exploration</LinkButton>
     </footer>
   </article>
 </BaseLayout>
 
 <style>
-  .lab-detail {
-    padding-block: var(--section-space);
+  .lab-opening {
+    margin-top: var(--space-6);
   }
-
-  .lab-detail-header {
+  .lab-detail-meta {
     display: grid;
-    gap: var(--space-6);
-    min-height: min(68vh, 46rem);
-    align-content: center;
-  }
-
-  .lab-detail-header h1 {
-    max-width: 17ch;
-  }
-
-  .lab-detail-summary {
-    max-width: 44ch;
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--font-size-body-lg);
-    text-wrap: pretty;
-  }
-
-  .lab-detail-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-4);
-    margin: 0;
-    padding: var(--space-5) 0 0;
+    gap: var(--space-5);
+    padding-top: var(--space-5);
+    margin: var(--space-5) 0 0;
     border-top: 1px solid var(--color-border);
-    color: var(--color-text-muted);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-    letter-spacing: var(--tracking-meta);
-    list-style: none;
-    text-transform: uppercase;
   }
-
+  .lab-detail-meta dt {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-meta);
+  }
+  .lab-detail-meta dd {
+    margin: var(--space-2) 0 0;
+    font-size: var(--font-size-nav);
+  }
   .lab-detail-links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-4) var(--space-6);
-    margin: 0;
+    gap: var(--space-4);
   }
-
-  .lab-detail-body {
-    display: grid;
-    gap: var(--space-3) var(--page-gutter);
-    max-width: none;
-    padding-block: var(--section-space);
-    border-top: 1px solid var(--color-border);
-  }
-
-  .lab-detail-body :global(h2) {
-    margin: 0 0 var(--space-3);
-    font-family: var(--font-meta);
-    font-size: var(--font-size-meta);
-    font-weight: 400;
-    letter-spacing: var(--tracking-meta);
-    line-height: 1.4;
-    text-transform: uppercase;
-  }
-
-  .lab-detail-body :global(p) {
-    max-width: 62ch;
-    margin: 0;
-    text-wrap: pretty;
-  }
-
-  .lab-detail-body :global(p + h2) {
-    margin-top: var(--space-6);
-  }
-
   .lab-detail-footer {
-    padding-top: var(--space-6);
+    justify-content: space-between;
+    margin-top: var(--section-space);
+    padding-top: var(--space-5);
     border-top: 1px solid var(--color-border);
-  }
-
-  @media (min-width: 56rem) {
-    .lab-detail-header {
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: var(--page-gutter);
-    }
-
-    .lab-detail-header > .eyebrow,
-    .lab-detail-header h1 {
-      grid-column: 1 / 9;
-    }
-
-    .lab-detail-summary {
-      grid-column: 8 / 13;
-    }
-
-    .lab-detail-tags,
-    .lab-detail-links {
-      grid-column: 1 / -1;
-    }
-
-    .lab-detail-body {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 </style>
